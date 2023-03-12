@@ -1,2 +1,7 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+job4j_exercises,ru.job4j,HelloWorld4,3,4,0,0,1,2,1,1,1,1
+job4j_exercises,ru.job4j,HelloWorld2,7,0,0,0,3,0,2,0,2,0
+job4j_exercises,ru.job4j,HelloWorld3,3,4,0,0,1,2,1,1,1,1
 job4j_exercises,ru.job4j,App,7,0,0,0,3,0,2,0,2,0
+job4j_exercises,ru.job4j,HelloWorld,3,4,0,0,1,2,1,1,1,1
+job4j_exercises,ru.job4j.exam.collections,GenericUsage,3,0,0,0,1,0,1,0,1,0

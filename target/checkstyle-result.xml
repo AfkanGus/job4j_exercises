@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="9.0">
-<file name="C:\projects\job4j_exercises\src\test\java\ru\job4j\AppTest.java">
+<file name="C:\Users\af\IdeaProjects\job4j_exercises\src\main\java\ru\job4j\App.java">
+</file>
+<file name="C:\Users\af\IdeaProjects\job4j_exercises\src\main\java\ru\job4j\exam\collections\GenericUsage.java">
+</file>
+<file name="C:\Users\af\IdeaProjects\job4j_exercises\src\main\java\ru\job4j\HelloWorld.java">
+</file>
+<file name="C:\Users\af\IdeaProjects\job4j_exercises\src\main\java\ru\job4j\HelloWorld2.java">
+</file>
+<file name="C:\Users\af\IdeaProjects\job4j_exercises\src\main\java\ru\job4j\HelloWorld3.java">
+</file>
+<file name="C:\Users\af\IdeaProjects\job4j_exercises\src\main\java\ru\job4j\HelloWorld4.java">
+</file>
+<file name="C:\Users\af\IdeaProjects\job4j_exercises\src\test\java\ru\job4j\AppTest.java">
+</file>
+<file name="C:\Users\af\IdeaProjects\job4j_exercises\src\test\java\ru\job4j\HelloWorld2Test.java">
+</file>
+<file name="C:\Users\af\IdeaProjects\job4j_exercises\src\test\java\ru\job4j\HelloWorld3Test.java">
+</file>
+<file name="C:\Users\af\IdeaProjects\job4j_exercises\src\test\java\ru\job4j\HelloWorld4Test.java">
+</file>
+<file name="C:\Users\af\IdeaProjects\job4j_exercises\src\test\java\ru\job4j\HelloWorldTest.java">
 </file>
 </checkstyle>
