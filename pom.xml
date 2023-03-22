@@ -9,9 +9,6 @@
   <version>1.0-SNAPSHOT</version>
 
   <name>job4j_exercises</name>
-  <description>A simple job4j_exercises.</description>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
 
    <properties>
         <maven.compiler.source>17</maven.compiler.source>
