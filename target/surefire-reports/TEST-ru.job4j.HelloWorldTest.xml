@@ -37,7 +37,7 @@
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="os.version" value="10.0"/>
     <property name="user.home" value="C:\Users\af"/>
-    <property name="user.timezone" value="Asia/Baku"/>
+    <property name="user.timezone" value="Australia/Perth"/>
     <property name="file.encoding" value="UTF-8"/>
     <property name="java.specification.version" value="18"/>
     <property name="user.name" value="af"/>
