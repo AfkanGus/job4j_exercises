@@ -1,4 +1,4 @@
-package ru.job4j;
+package ru.job4j.firstprog;
 
 /**
  * 12. Вывод Ping Pong на консоль.

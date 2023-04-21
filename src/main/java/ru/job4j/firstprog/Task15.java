@@ -1,4 +1,4 @@
-package ru.job4j;
+package ru.job4j.firstprog;
 
 /**
  * 15. Вывод на консоль надписи "+++!!!!??" (1)

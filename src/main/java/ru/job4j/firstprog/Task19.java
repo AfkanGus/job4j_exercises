@@ -1,4 +1,4 @@
-package ru.job4j;
+package ru.job4j.firstprog;
 
 /**
  * 19. Вывод значения переменной с поясняющей надписью.

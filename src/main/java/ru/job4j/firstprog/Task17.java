@@ -1,4 +1,4 @@
-package ru.job4j;
+package ru.job4j.firstprog;
 
 /**
  * 17. Вывод на консоль квадрат и куб числа

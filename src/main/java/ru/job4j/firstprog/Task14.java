@@ -1,4 +1,4 @@
-package ru.job4j;
+package ru.job4j.firstprog;
 
 /**
  * 14. Вывод на консоль надписи "H-e-l-l-o-,-f-r-i-e-n-d!"

@@ -16,8 +16,8 @@ public class IntegerTypeConversionTest {
         IntegerTypeConversion.main(null);
         String ln = System.lineSeparator();
         assertThat(out.toString(), is(
-                "1" + ln +
-                        "1" + ln
+                "1" + ln
+                        + "1" + ln
         ));
     }
 }

@@ -1,14 +1,13 @@
 package ru.job4j;
 
 import org.junit.Test;
+import ru.job4j.firstprog.Task17;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-
-import static org.junit.Assert.*;
 
 public class Task17Test {
     @Test

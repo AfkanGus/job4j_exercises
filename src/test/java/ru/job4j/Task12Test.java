@@ -1,6 +1,7 @@
 package ru.job4j;
 
 import org.junit.Test;
+import ru.job4j.firstprog.Task12;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;

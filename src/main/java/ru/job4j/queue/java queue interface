@@ -1,0 +1,22 @@
+java queue interface
+Queue - provides the functionality of the queue date structure.
+It extends the Collection interface.
+
+classes that implement queue
+             queue
+               |
+  ArrayDeque    LinkedList   PriorityQueue
+
+interfaces that extends queue
+             |
+Deque     BlockingQueue   BlockingDeque
+
+ How to use Queue
+        |
+Queue<String> queue = new LinkedList<>();
+Queue<String> queue = new ArrayDeque<>();
+Queue<String> queue = new PriorityQueue<>();
+
+
+
+

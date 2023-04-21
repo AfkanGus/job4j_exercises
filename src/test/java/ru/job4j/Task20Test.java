@@ -3,6 +3,7 @@ package ru.job4j;
 import org.hamcrest.core.Is;
 import org.junit.Assert;
 import org.junit.Test;
+import ru.job4j.firstprog.Task20;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
