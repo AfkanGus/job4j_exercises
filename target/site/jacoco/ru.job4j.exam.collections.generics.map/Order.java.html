@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Order.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">job4j_exercises</a> &gt; <a href="index.source.html" class="el_package">ru.job4j.exam.collections.generics.map</a> &gt; <span class="el_source">Order.java</span></div><h1>Order.java</h1><pre class="source lang-java linenums">package ru.job4j.exam.collections.generics.map;
+
+import java.util.Objects;
+
+public class Order {
+    private String number;
+    private String name;
+
+<span class="fc" id="L9">    public Order(String number, String name) {</span>
+<span class="fc" id="L10">        this.number = number;</span>
+<span class="fc" id="L11">        this.name = name;</span>
+<span class="fc" id="L12">    }</span>
+
+    public String getNumber() {
+<span class="fc" id="L15">        return number;</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L20">        return &quot;Order{&quot;</span>
+                + &quot;number='&quot; + number + '\''
+                + &quot;, name='&quot; + name + '\''
+                + '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+<span class="pc bpc" id="L28" title="1 of 2 branches missed.">        if (this == o) {</span>
+<span class="nc" id="L29">            return true;</span>
+        }
+<span class="pc bpc" id="L31" title="2 of 4 branches missed.">        if (o == null || getClass() != o.getClass()) {</span>
+<span class="nc" id="L32">            return false;</span>
+        }
+<span class="fc" id="L34">        Order order = (Order) o;</span>
+<span class="pc bpc" id="L35" title="1 of 2 branches missed.">        return Objects.equals(number, order.number)</span>
+<span class="pc bpc" id="L36" title="1 of 2 branches missed.">                &amp;&amp; Objects.equals(name, order.name);</span>
+    }
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L41">        return Objects.hash(number, name);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

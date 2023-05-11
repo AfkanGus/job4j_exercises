@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SimpleArrayList.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">job4j_exercises</a> &gt; <a href="index.source.html" class="el_package">ru.job4j.exam.collections.generics.list</a> &gt; <span class="el_source">SimpleArrayList.java</span></div><h1>SimpleArrayList.java</h1><pre class="source lang-java linenums">package ru.job4j.exam.collections.generics.list;
+
+import java.util.*;
+
+public class SimpleArrayList&lt;T&gt; implements SimpleList&lt;T&gt; {
+    private T[] container;
+
+<span class="nc" id="L8">    private int size = 0;</span>
+
+    private int modCount;
+
+<span class="nc" id="L12">    public SimpleArrayList(int capacity) {</span>
+<span class="nc" id="L13">        this.container = (T[]) new Object[capacity];</span>
+<span class="nc" id="L14">    }</span>
+
+    private void grow() {
+<span class="nc bnc" id="L17" title="All 2 branches missed.">        if (container.length == 0) {</span>
+<span class="nc" id="L18">            container = Arrays.copyOf(container, 1);</span>
+        }
+<span class="nc" id="L20">        container = Arrays.copyOf(container, container.length * 2);</span>
+<span class="nc" id="L21">        modCount++;</span>
+<span class="nc" id="L22">    }</span>
+
+    @Override
+    public void add(T value) {
+<span class="nc bnc" id="L26" title="All 2 branches missed.">        if (size == container.length) {</span>
+<span class="nc" id="L27">            grow();</span>
+        }
+<span class="nc" id="L29">        container[size++] = value;</span>
+<span class="nc" id="L30">        modCount++;</span>
+<span class="nc" id="L31">    }</span>
+
+    @Override
+    public T set(int index, T newValue) {
+<span class="nc" id="L35">        T prevValue = get(index);</span>
+<span class="nc" id="L36">        container[index] = newValue;</span>
+<span class="nc" id="L37">        return prevValue;</span>
+    }
+
+    @Override
+    public T remove(int index) {
+<span class="nc" id="L42">        T prevIndex = get(index);</span>
+<span class="nc" id="L43">        System.arraycopy(container, index + 1, container,</span>
+                index, size - index - 1);
+<span class="nc" id="L45">        container[--size] = null;</span>
+<span class="nc" id="L46">        modCount++;</span>
+<span class="nc" id="L47">        return prevIndex;</span>
+    }
+
+    @Override
+    public T get(int index) {
+<span class="nc" id="L52">        Objects.checkIndex(index, size);</span>
+<span class="nc" id="L53">        return container[index];</span>
+    }
+
+    @Override
+    public int size() {
+<span class="nc" id="L58">        return size;</span>
+    }
+
+    @Override
+    public Iterator&lt;T&gt; iterator() {
+<span class="nc" id="L63">        return new Iterator&lt;&gt;() {</span>
+<span class="nc" id="L64">            private int cursor = 0;</span>
+<span class="nc" id="L65">            final int expectedModCount = modCount;</span>
+
+            @Override
+            public boolean hasNext() {
+<span class="nc bnc" id="L69" title="All 2 branches missed.">                if (expectedModCount != modCount) {</span>
+<span class="nc" id="L70">                    throw new ConcurrentModificationException();</span>
+                }
+<span class="nc bnc" id="L72" title="All 2 branches missed.">                return cursor &lt; size;</span>
+            }
+
+            @Override
+            public T next() {
+<span class="nc bnc" id="L77" title="All 2 branches missed.">                if (!hasNext()) {</span>
+<span class="nc" id="L78">                    throw new NoSuchElementException();</span>
+                }
+<span class="nc" id="L80">                return container[cursor++];</span>
+            }
+        };
+    }
+}
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

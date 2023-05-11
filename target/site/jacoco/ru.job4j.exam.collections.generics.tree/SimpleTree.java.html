@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SimpleTree.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">job4j_exercises</a> &gt; <a href="index.source.html" class="el_package">ru.job4j.exam.collections.generics.tree</a> &gt; <span class="el_source">SimpleTree.java</span></div><h1>SimpleTree.java</h1><pre class="source lang-java linenums">package ru.job4j.exam.collections.generics.tree;
+
+import java.util.LinkedList;
+import java.util.Optional;
+import java.util.Queue;
+import java.util.function.Predicate;
+
+public class SimpleTree&lt;E&gt; implements Tree&lt;E&gt; {
+    private final Node&lt;E&gt; root;
+
+<span class="nc" id="L11">    public SimpleTree(final E root) {</span>
+<span class="nc" id="L12">        this.root = new Node&lt;E&gt;(root);</span>
+<span class="nc" id="L13">    }</span>
+
+    public boolean isBinary() {
+<span class="nc bnc" id="L16" title="All 2 branches missed.">        return findByPredicate(node -&gt; node.children.size() &gt; 2).isEmpty();</span>
+    }
+
+    @Override
+    public boolean add(E parent, E child) {
+<span class="nc" id="L21">        Optional&lt;Node&lt;E&gt;&gt; parentNode = findBy(parent);</span>
+        // ищем узел по значению parent
+<span class="nc bnc" id="L23" title="All 2 branches missed.">        if (parentNode.isPresent()) {</span>
+<span class="nc bnc" id="L24" title="All 2 branches missed.">            if (findBy(child).isPresent()) {</span>
+                // проверяем, что значения child еще нет в дереве
+<span class="nc" id="L26">                return false;</span>
+            }
+<span class="nc" id="L28">            Node&lt;E&gt; childNode = new Node&lt;&gt;(child);</span>
+            // создаем новый дочерний узел
+<span class="nc" id="L30">            parentNode.get().children.add(childNode);</span>
+            // добавляем его в список дочерних узлов родительского узла
+<span class="nc" id="L32">            return true;</span>
+        }
+<span class="nc" id="L34">        return false;</span>
+    }
+
+    @Override
+    public Optional&lt;Node&lt;E&gt;&gt; findBy(E value) {
+<span class="nc" id="L39">        return findByPredicate(node -&gt; node.value.equals(value));</span>
+    }
+
+    public Optional&lt;Node&lt;E&gt;&gt; findByPredicate(Predicate&lt;Node&lt;E&gt;&gt; condition) {
+<span class="nc" id="L43">        Queue&lt;Node&lt;E&gt;&gt; data = new LinkedList&lt;&gt;();</span>
+<span class="nc" id="L44">        data.offer(root);</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">        while (!data.isEmpty()) {</span>
+<span class="nc" id="L46">            Node&lt;E&gt; node = data.poll();</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">            if (condition.test(node)) {</span>
+<span class="nc" id="L48">                return Optional.of(node);</span>
+            }
+<span class="nc" id="L50">            data.addAll(node.children);</span>
+<span class="nc" id="L51">        }</span>
+<span class="nc" id="L52">        return Optional.empty();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
