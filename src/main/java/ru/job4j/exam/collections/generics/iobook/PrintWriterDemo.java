@@ -1,4 +1,4 @@
-package ru.job4j.exam.collections.generics.io;
+package ru.job4j.exam.collections.generics.iobook;
 
 import java.io.PrintWriter;
 

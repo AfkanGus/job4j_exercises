@@ -1,4 +1,4 @@
-package ru.job4j.exam.collections.generics.io;
+package ru.job4j.exam.collections.generics.iobook;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -9,12 +9,12 @@ public class ShowFile1 {
         int i;
         FileInputStream inputStream = null;
         if (args.length != 1) {
-            System.out.println("use: ShowFile name_file");
+            System.out.println(System.getProperty("user.home") + "/Desktop/words.txt");
             return;
         }
 
         try {
-            inputStream = new FileInputStream(args[0]);
+            inputStream = new FileInputStream(System.getProperty("user.home") + "/Desktop/words.txt");
             do {
                 i = inputStream.read();
                 if (i != -1) {
