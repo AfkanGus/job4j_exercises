@@ -9,7 +9,7 @@ import java.nio.file.Path;
 
 public class FireReadingExample {
     public static void main(String[] args) {
-        Path path = FileSystems.getDefault().getPath("C:\\projects\\job4j_exercises\\src\\main\\java\\ru\\job4j\\exam\\collections\\generics\\io", "access.log");
+        Path path = FileSystems.getDefault().getPath("C:/projects/job4j_exercises/src/main/java/ru/job4j/exam/collections/generics/io", "access.log");
         try (BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8)) {
             String line;
             while ((line = reader.readLine()) != null) {
