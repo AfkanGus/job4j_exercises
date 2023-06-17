@@ -8,4 +8,9 @@ public class Task15 {
         c = number + 6;
         return a + ", " + b + ", " + c;
     }
+
+    public static void main(String[] args) {
+        Task15 task15 = new Task15();
+        System.out.println(increaseBy2(6));
+    }
 }

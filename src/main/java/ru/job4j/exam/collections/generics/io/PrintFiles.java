@@ -8,7 +8,7 @@ import java.util.EnumSet;
 import static java.nio.file.FileVisitResult.CONTINUE;
 
 public class PrintFiles extends SimpleFileVisitor<Path> {
-    public FileVisitResult visitResult(Path file, BasicFileAttributes attributes) throws IOException {
+    public FileVisitResult preVisitDirectory(Path file, BasicFileAttributes attributes) throws IOException {
         if (attributes.isSymbolicLink()) {
             System.out.format("Symbolic link :%s ", file);
         } else if (attributes.isRegularFile()) {
@@ -20,22 +20,29 @@ public class PrintFiles extends SimpleFileVisitor<Path> {
         return CONTINUE;
     }
 
+    @Override
+    public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+        System.out.println(file.toAbsolutePath());
+        return CONTINUE;
+    }
+
     public FileVisitResult postVisitDirectory(Path dir, IOException exception) {
         System.out.format("Directory: %s%n", dir);
         return CONTINUE;
     }
 
     public FileVisitResult visitFileFailed(Path file, IOException exception) {
-        System.out.println(exception);
+       System.err.println(exception);
         return CONTINUE;
     }
 
     public static void main(String[] args) throws IOException {
-        Path startDir = Paths.get("C:/projects/job4j_exercises/data");
+   /*     Path startDir = Paths.get(".");
         PrintFiles printFiles = new PrintFiles();
         EnumSet<FileVisitOption> options = EnumSet.of(FileVisitOption.FOLLOW_LINKS);
         int maxDepth = 2;
-        Files.walkFileTree(startDir, options, maxDepth, printFiles);
-
+        Files.walkFileTree(startDir, options, maxDepth, printFiles);*/
+        Path start = Paths.get(".");
+        Files.walkFileTree(start, new PrintFiles());
     }
 }

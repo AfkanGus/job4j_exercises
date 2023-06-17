@@ -1,0 +1,13 @@
+*.class
+ target
+.idea
+*.iml
+
+out
+*.log
+*.class
+*.xml
+*.html
+*.gif
+*.lst
+
