@@ -19,20 +19,39 @@ public class ArgsName {
             // разделяет полученную строку на две части, используя символ "=" (равно) в качестве разделителя.
             // Параметр 2 указывает, что разделение должно произойти только один раз. В результате получается массив строк.
             String[] parts = arg.replaceFirst("-", "").split("=", 2);
+            String key = parts[0]; // здесь хранится ключ
+            String value = parts[1]; // здест хранится значение
+            values.put(key, value);
         }
 
     }
 
     public static ArgsName of(String[] args) {
-
+        validator(args);
         ArgsName names = new ArgsName();
         names.parse(args);
         return names;
     }
 
-    private void validator(String[] args) {
+    private static void validator(String[] args) {
+        if (args.length == 0) {
+            throw new IllegalArgumentException("Arguments not passed to program");
+        }
+    /*    for (String arg : args) {
+            if (!arg.startsWith("-")) {
+                throw new IllegalArgumentException("Error: This argument '%s' does not start with a '-' character".formatted(arg));
+            }
+            if (!arg.contains("=")) {
+                throw new IllegalArgumentException("Error: This argument '%s' does not contain an equal sign".formatted(arg));
+            }
+            if (arg.indexOf("=") == arg.length() - 1) {
+                throw new IllegalArgumentException("Error: This argument '%s' does not contain a value".formatted(arg));
+            }
+            if (arg.indexOf("=") == 1) {
+                throw new IllegalArgumentException("Error: This argument '%s' does not contain a key".formatted(arg));
+            }*/
+        }
 
-    }
 
     public static void main(String[] args) {
         ArgsName jvm = ArgsName.of(new String[]{"-Xmx=512", "-encoding=UTF-8"});
