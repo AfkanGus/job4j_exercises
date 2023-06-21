@@ -8,7 +8,7 @@ public class ArgsName {
 
     public String get(String key) {
         if (!values.containsKey(key)) {
-            throw new IllegalArgumentException(String.format("This key: '%s' is missing" + key));
+            throw new IllegalArgumentException(String.format("This key: '%s' is missing", key));
         }
         return values.get(key);
     }
@@ -28,16 +28,25 @@ public class ArgsName {
 
     public static ArgsName of(String[] args) {
         validator(args);
+        // Если проверка проходит успешно, то создается новый экземпляр
+        // класса ArgsName с помощью оператора new, и затем вызывается метод parse(args),
+        // который анализирует и разбирает аргументы командной строки и сохраняет
+        // их во внутреннюю структуру данных класса ArgsName.
         ArgsName names = new ArgsName();
         names.parse(args);
+        // возвращает экземпляр класса ArgsName, который содержит разобранные и проверенные аргументы командной строки.
         return names;
     }
 
+    /*
+    validator(args), который выполняет проверку аргументов
+     командной строки на соответствие определенным правилам и выбрасывает исключения в случае нарушения этих правил
+     */
     private static void validator(String[] args) {
         if (args.length == 0) {
             throw new IllegalArgumentException("Arguments not passed to program");
         }
-    /*    for (String arg : args) {
+        for (String arg : args) {
             if (!arg.startsWith("-")) {
                 throw new IllegalArgumentException("Error: This argument '%s' does not start with a '-' character".formatted(arg));
             }
@@ -49,9 +58,9 @@ public class ArgsName {
             }
             if (arg.indexOf("=") == 1) {
                 throw new IllegalArgumentException("Error: This argument '%s' does not contain a key".formatted(arg));
-            }*/
+            }
         }
-
+    }
 
     public static void main(String[] args) {
         ArgsName jvm = ArgsName.of(new String[]{"-Xmx=512", "-encoding=UTF-8"});
