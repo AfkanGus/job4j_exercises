@@ -125,16 +125,47 @@ public class Zip {
         }
     }
 
+    /**
+     * Создается новый объект Zip с именем zipArchive. Класс Zip представляет
+     * функциональность для упаковки файлов в ZIP-архив.Создается Map с именем arguments,
+     * который получает значения аргументов командной строки, используя класс ArgsName.
+     * ArgsName.of(args) создает экземпляр ArgsName и передает ему аргументы командной строки args.
+     * Затем метод .values() возвращает значения аргументов в виде Map<String, String>,
+     * где ключи являются именами аргументов, а значения - их значениями.
+     * @param args
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
         Zip zipArchive = new Zip();
         Map<String, String> arguments = ArgsName.of(args).values;
         List<String> values = new ArrayList<>();
+        /*
+        Создается новый список values, в котором будут храниться значения аргументов командной строки.
+        Цикл for-each проходит по каждой записи (Map.Entry) в arguments
+         и добавляет значение (e.getValue()) в список values.
+         */
         for (Map.Entry<String, String> e : arguments.entrySet()) {
             values.add(e.getValue());
         }
+        /*
+        Вызывается метод validateZip(values), который выполняет проверку аргументов командной строки на соответствие требованиям.
+         */
         validateZip(values);
+        /*
+        Выполняется поиск файлов в указанной директории, используя класс Search. Метод Paths.get(values.get(0))
+        создает объект типа Path, представляющий путь к директории, указанной в первом аргументе командной строки.
+        Затем вызывается метод Search.search(), передавая путь к директории и условие фильтрации файлов.
+         В данном случае, файлы будут выбраны только если их имя не заканчивается на значение,
+         указанное во втором аргументе командной строки. Результат поиска - список Path файлов,
+          который сохраняется в переменной files.
+         */
         List<Path> files = Search.search(Paths.get(values.get(0)),
                 (e -> !e.toFile().getName().endsWith(values.get(1))));
+        /*
+        Вызывается метод packFiles объекта zipArchive, чтобы упаковать найденные файлы в ZIP-архив.
+         В метод передается список файлов files и объект типа File, представляющий путь к целевому архиву.
+         Путь к архиву получается из третьего аргумента командной строки с помощью Paths.get(values.get(2)).toFile().
+         */
         zipArchive.packFiles(files, Paths.get(values.get(2)).toFile());
     }
 }
