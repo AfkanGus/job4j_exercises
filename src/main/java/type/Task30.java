@@ -21,6 +21,11 @@ package type;
  */
 public class Task30 {
     public static void difference(int number) {
-        int num1, num2;
+        int tens = number / 10;  // число десятков
+        int ones = number % 10;  // число единиц
+        int diff = Math.abs(tens - ones);  // вычисляем разницу и берем модуль
+
+        System.out.println(diff);
+
     }
 }
