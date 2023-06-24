@@ -28,6 +28,7 @@ public class Task20Test {
         String expected = "3 6" + ln;
         assertThat(out.toString(), is(expected));
     }
+
     @Test
     public void when11Then1And1() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();

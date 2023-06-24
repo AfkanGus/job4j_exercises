@@ -17,6 +17,5 @@ public class Task17 {
         double area = 0.5 * (base * height);
         double perimetr = 2 * (base + height);
         System.out.print(area + System.lineSeparator().replace(',', '.') + perimetr);
-
     }
 }

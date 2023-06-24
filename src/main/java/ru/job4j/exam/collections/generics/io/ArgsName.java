@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ArgsName {
-    private final Map<String, String> values = new HashMap<>();
+    public final Map<String, String> values = new HashMap<>();
 
     public String get(String key) {
         if (!values.containsKey(key)) {
@@ -27,7 +27,7 @@ public class ArgsName {
     }
 
     public static ArgsName of(String[] args) {
-        validator(args);
+        validate(args);
         // Если проверка проходит успешно, то создается новый экземпляр
         // класса ArgsName с помощью оператора new, и затем вызывается метод parse(args),
         // который анализирует и разбирает аргументы командной строки и сохраняет
@@ -42,7 +42,7 @@ public class ArgsName {
     validator(args), который выполняет проверку аргументов
      командной строки на соответствие определенным правилам и выбрасывает исключения в случае нарушения этих правил
      */
-    private static void validator(String[] args) {
+    private static void validate(String[] args) {
         if (args.length == 0) {
             throw new IllegalArgumentException("Arguments not passed to program");
         }
@@ -59,6 +59,7 @@ public class ArgsName {
             if (arg.indexOf("=") == 1) {
                 throw new IllegalArgumentException("Error: This argument '%s' does not contain a key".formatted(arg));
             }
+
         }
     }
 
