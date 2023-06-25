@@ -25,9 +25,6 @@ public class Task31 {
         num1 = number / 100;
         num2 = (number % 100) / 10;
         num3 = (number % 100) % 10;
-        //System.out.println(Math.abs(num3 - num1) * num2);
-        System.out.println(num1 + "+" + num2 + "+" + num3);
-        //226 (2 -number/100;2-(number % 100) / 10;6 -(number % 100) % 10;
-
+        System.out.println(Math.abs(num3 - num1) * num2);
     }
 }
