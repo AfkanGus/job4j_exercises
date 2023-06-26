@@ -1,0 +1,99 @@
+[1mdiff --git a/src/main/java/ru/job4j/exam/collections/generics/io/ArgsName.java b/src/main/java/ru/job4j/exam/collections/generics/io/ArgsName.java[m
+[1mindex 5a6c4ca..130263d 100644[m
+[1m--- a/src/main/java/ru/job4j/exam/collections/generics/io/ArgsName.java[m
+[1m+++ b/src/main/java/ru/job4j/exam/collections/generics/io/ArgsName.java[m
+[36m@@ -4,7 +4,7 @@[m [mimport java.util.HashMap;[m
+ import java.util.Map;[m
+ [m
+ public class ArgsName {[m
+[31m-    private final Map<String, String> values = new HashMap<>();[m
+[32m+[m[32m    public final Map<String, String> values = new HashMap<>();[m
+ [m
+     public String get(String key) {[m
+         if (!values.containsKey(key)) {[m
+[36m@@ -27,7 +27,7 @@[m [mpublic class ArgsName {[m
+     }[m
+ [m
+     public static ArgsName of(String[] args) {[m
+[31m-        validator(args);[m
+[32m+[m[32m        validate(args);[m
+         // Если проверка проходит успешно, то создается новый экземпляр[m
+         // класса ArgsName с помощью оператора new, и затем вызывается метод parse(args),[m
+         // который анализирует и разбирает аргументы командной строки и сохраняет[m
+[36m@@ -42,7 +42,7 @@[m [mpublic class ArgsName {[m
+     validator(args), который выполняет проверку аргументов[m
+      командной строки на соответствие определенным правилам и выбрасывает исключения в случае нарушения этих правил[m
+      */[m
+[31m-    private static void validator(String[] args) {[m
+[32m+[m[32m    private static void validate(String[] args) {[m
+         if (args.length == 0) {[m
+             throw new IllegalArgumentException("Arguments not passed to program");[m
+         }[m
+[36m@@ -59,6 +59,7 @@[m [mpublic class ArgsName {[m
+             if (arg.indexOf("=") == 1) {[m
+                 throw new IllegalArgumentException("Error: This argument '%s' does not contain a key".formatted(arg));[m
+             }[m
+[32m+[m
+         }[m
+     }[m
+ [m
+[1mdiff --git a/src/main/java/type/Task17.java b/src/main/java/type/Task17.java[m
+[1mindex 99f8033..ca56f1c 100644[m
+[1m--- a/src/main/java/type/Task17.java[m
+[1m+++ b/src/main/java/type/Task17.java[m
+[36m@@ -17,6 +17,5 @@[m [mpublic class Task17 {[m
+         double area = 0.5 * (base * height);[m
+         double perimetr = 2 * (base + height);[m
+         System.out.print(area + System.lineSeparator().replace(',', '.') + perimetr);[m
+[31m-[m
+     }[m
+ }[m
+[1mdiff --git a/src/main/java/type/Task18.java b/src/main/java/type/Task18.java[m
+[1mindex 48b9628..47e4bc5 100644[m
+[1m--- a/src/main/java/type/Task18.java[m
+[1m+++ b/src/main/java/type/Task18.java[m
+[36m@@ -5,17 +5,15 @@[m [mpackage type;[m
+ Компания по продаже напитков проводит конкурс "Балл под крышкой":[m
+  на внутренней стороне пробок, которыми закрыты бутылки, выпускаемые компанией,[m
+  напечатаны призовые баллы. Есть пробки, "равные" 10, 100 и 1000 баллам.[m
+[31m-[m
+ Ниже представлен метод capSum(int tens, int hundreds, int thousands),[m
+ принимающий 3 параметра, означающие количество крышек каждого типа:[m
+  tens - количество крышек с 10 баллами, hundreds - со 100, thousands - с 1000.[m
+[31m-[m
+ Задание: написать код, который высчитывает сумму баллов со всех крышек.[m
+[31m-[m
+ Примечание: Подразумевается, что в качестве входящих параметров принимаются целые неотрицательные числа.[m
+  */[m
+ public class Task18 {[m
+     public static int capSum(int tens, int hundreds, int thousands) {[m
+[31m-        return tens * 10 + hundreds * 100 + thousands * 1000;[m
+[32m+[m[32m        System.out.println(capSum(1, 2, 3));[m
+[32m+[m[32m        return tens * 10 + hundreds * 100 + thousands * 300;[m
+     }[m
+ }[m
+[1mdiff --git a/src/main/java/type/Task26.java b/src/main/java/type/Task26.java[m
+[1mindex 4a77bd6..bb31932 100644[m
+[1m--- a/src/main/java/type/Task26.java[m
+[1m+++ b/src/main/java/type/Task26.java[m
+[36m@@ -19,7 +19,7 @@[m [mpublic class Task26 {[m
+     public static void transform(int number) {[m
+         int num1, num2;[m
+         num1 = (number % 10);[m
+[31m-        num2 = (number) / 10 + 8;[m
+[32m+[m[32m        num2 = (number) / 10;[m
+         System.out.println(num1 * 10 + num2);[m
+     }[m
+ }[m
+[1mdiff --git a/src/test/java/type/Task20Test.java b/src/test/java/type/Task20Test.java[m
+[1mindex d8d7e8a..06d7d0d 100644[m
+[1m--- a/src/test/java/type/Task20Test.java[m
+[1m+++ b/src/test/java/type/Task20Test.java[m
+[36m@@ -28,6 +28,7 @@[m [mpublic class Task20Test {[m
+         String expected = "3 6" + ln;[m
+         assertThat(out.toString(), is(expected));[m
+     }[m
+[32m+[m
+     @Test[m
+     public void when11Then1And1() {[m
+         ByteArrayOutputStream out = new ByteArrayOutputStream();[m
