@@ -1,19 +1,14 @@
 package ru.job4j.condition;
 
 public class Tour {
-    public static void meny(String name) {
-        if ("sm.".equals(name)) {
-            System.out.println("start -sm");
+    public static String answer(String question) {
+        String rsl = "I don't know. Please, ask another question.";
+        if ("Hi, Bot.".equals(question)) {
+            rsl = "Hi, SmartAss.";
         }
-        if ("tanks".equals(name)) {
-            System.out.println("strat - tanks");
+        if ("Bye.".equals(question)) {
+            rsl = "See you later.";
         }
-        if ("tetris".equals(name)) {
-            System.out.println("start - tetris");
-        }
-    }
-
-    public static void main(String[] args) {
-        Tour.meny("tanks");
+        return rsl;
     }
 }
