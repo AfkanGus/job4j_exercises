@@ -17,8 +17,12 @@ package type;
  */
 public class Task39 {
     public static void leftCircleShift(int number) {
+        /*ы получить первые две цифры числа*/
         int num1 = number / 100;
+        /*ы получить последние две цифры числа. сдвинуть его влево на одну позицию
+         (умножение на 10 эквивалентно умножению на 10^1)*/
         int num2 = (number % 100) * 10;
+        /*получить итоговое число после сдвига цифр*/
        int num3 = num1 + num2;
         System.out.println(num3);
     }
