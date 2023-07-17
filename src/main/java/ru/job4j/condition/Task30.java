@@ -19,10 +19,10 @@ package ru.job4j.condition;
 public class Task30 {
     public static void numModify(int number) {
         if (number >= 0) {
+            /*на печать*/
             System.out.println("0");
         } else {
             System.out.println("6");
         }
-
     }
 }
