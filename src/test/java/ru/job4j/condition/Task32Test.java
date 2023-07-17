@@ -7,7 +7,7 @@ import java.io.PrintStream;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
-
+/*31. Вывод разницы или произведения двух чисел в зависимости от условия*/
 public class Task32Test {
     public String ln = System.lineSeparator();
 
