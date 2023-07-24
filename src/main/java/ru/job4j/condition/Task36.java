@@ -16,10 +16,15 @@ package ru.job4j.condition;
  */
 public class Task36 {
     public static void sameNums(int number) {
-        if (number % 10 == number / 10) {
-            System.out.println("Да");
-        } else {
-            System.out.println("Нет");
+        int f = number / 10;
+        int s = number % 10;
+        while (number >= 10) {
+            number = f;
+            if (f != s) {
+                System.out.println("Нет");
+                return;
+            }
         }
+        System.out.println("Да");
     }
 }
