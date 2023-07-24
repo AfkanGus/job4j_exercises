@@ -29,7 +29,6 @@ public class Task17 {
         StringJoiner stringJoiner = new StringJoiner(" ");
         System.out.println("Начало");
         for (int i = 10; i <= 19; i += 2) {
-
             stringJoiner.add(String.valueOf(i));
         }
         System.out.println(stringJoiner);
