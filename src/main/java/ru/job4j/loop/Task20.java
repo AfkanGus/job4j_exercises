@@ -23,19 +23,19 @@ import java.util.StringJoiner;
 public class Task20 {
     public static void loop() {
         System.out.println("Начало");
-        StringJoiner stringJoiner = new StringJoiner(" ");
-        for (int i = 1550; i >= 1050; i -= 50) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 1500; i >= 1100; i -= 50) {
             int remainder = i % 100;
             switch (remainder) {
                 case 0:
-                    stringJoiner.add(i + "");
+                    stringBuilder.append(i).append(" ");
                     break;
                 default:
                     break;
             }
         }
-        System.out.println(stringJoiner);
-        System.out.println("Конец");
+            System.out.println(stringBuilder.toString().trim());
+            System.out.println("Конец");
     }
 }
 
