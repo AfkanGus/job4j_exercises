@@ -18,13 +18,22 @@ public class Task36 {
     public static void sameNums(int number) {
         int f = number / 10;
         int s = number % 10;
-        while (number >= 10) {
+        do {
             number = f;
             if (f != s) {
                 System.out.println("Нет");
                 return;
             }
         }
+        while (number >= 10);
         System.out.println("Да");
+       /* while (number >= 10) {
+            number = f;
+            if (f != s) {
+                System.out.println("Нет");
+                return;
+            }
+        }
+        System.out.println("Да");*/
     }
 }
