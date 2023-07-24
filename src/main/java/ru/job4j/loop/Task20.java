@@ -24,11 +24,14 @@ public class Task20 {
     public static void loop() {
         StringJoiner joiner = new StringJoiner(" ");
         System.out.println("Начало");
-        for (int i = 1500; i >= 1100; i--) {
-            /* мы ищем числа, которые оканчиваются на два нуля */
+        /* for (int i = 1500; i >= 1100; i--) {
+         *//* мы ищем числа, которые оканчиваются на два нуля *//*
             if (i % 100 == 0) {
                 joiner.add(String.valueOf(i));
             }
+        }*/
+        for (int i = 1500; i >= 1100; i -= 100) {
+            joiner.add(String.valueOf(i));
         }
         System.out.println(joiner);
         System.out.println("Конец");
