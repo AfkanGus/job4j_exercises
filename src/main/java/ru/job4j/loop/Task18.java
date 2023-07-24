@@ -1,5 +1,7 @@
 package ru.job4j.loop;
 
+import java.util.StringJoiner;
+
 /**
  * 18. Вывести положительные четные двузначные числа с
  * добавлением символа
