@@ -22,18 +22,19 @@ import java.util.StringJoiner;
  */
 public class Task20 {
     public static void loop() {
-        StringJoiner joiner = new StringJoiner(" ");
         System.out.println("Начало");
-        /* for (int i = 1500; i >= 1100; i--) {
-         *//* мы ищем числа, которые оканчиваются на два нуля *//*
-            if (i % 100 == 0) {
-                joiner.add(String.valueOf(i));
+        StringJoiner stringJoiner = new StringJoiner(" ");
+        for (int i = 1550; i >= 1050; i -= 50) {
+            int remainder = i % 100;
+            switch (remainder) {
+                case 0:
+                    stringJoiner.add(i + "");
+                    break;
+                default:
+                    break;
             }
-        }*/
-        for (int i = 1500; i >= 1100; i -= 100) {
-            joiner.add(String.valueOf(i));
         }
-        System.out.println(joiner);
+        System.out.println(stringJoiner);
         System.out.println("Конец");
     }
 }
