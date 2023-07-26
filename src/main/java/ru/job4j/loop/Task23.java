@@ -1,5 +1,7 @@
 package ru.job4j.loop;
 
+import java.util.StringJoiner;
+
 /**
  * 23. Вывести ряд чисел с последующим увеличением
  * Ниже представлен метод loop(int num), который принимает
@@ -19,6 +21,10 @@ package ru.job4j.loop;
  */
 public class Task23 {
     public static void loop(int num) {
-
+        StringJoiner stringJoiner = new StringJoiner(" ");
+        for (int i = num + 1; i <= num + 5; i++) {
+            stringJoiner.add(String.valueOf(i));
+        }
+        System.out.println(stringJoiner);
     }
 }
