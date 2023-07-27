@@ -19,6 +19,7 @@ public class Task25Test {
         String expected = "300+30+5" + ln;
         assertThat(out.toString(), is(expected));
     }
+
     @Test
     public void when760Then700Plus60Plus0() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();

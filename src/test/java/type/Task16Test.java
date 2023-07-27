@@ -20,6 +20,7 @@ class Task16Test {
                 .add("5").add("4").add("3");
         assertThat(out.toString(), is(expected.toString()));
     }
+
     @Test
     public void when0ThenMinus1AndMinus2AndMinus3() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();

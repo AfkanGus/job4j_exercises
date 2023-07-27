@@ -17,6 +17,7 @@ public class Task19Test {
         String expected = "198.19";
         assertThat(out.toString(), is(expected));
     }
+
     @Test
     public void when1500And10000And0dot02Then198dot19() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();

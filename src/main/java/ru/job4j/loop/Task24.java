@@ -28,5 +28,4 @@ public class Task24 {
         }
         System.out.println(stringJoiner);
     }
-
 }

@@ -20,6 +20,7 @@ public class Task21Test {
         String expected = "Одинаковые" + ln;
         assertThat(out.toString(), is(expected));
     }
+
     @Test
     public void whenNegativeSameThenSame() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();

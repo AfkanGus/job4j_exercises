@@ -12,9 +12,9 @@ public class InetAddressTest {
         address = InetAddress.getByName("www.youtube.com");
         System.out.println(address);
 
-        InetAddress SW[] = InetAddress.getAllByName("www.pornhub.com");
-        for (int i = 0; i < SW.length; i++) {
-            System.out.println(SW[i]);
+        InetAddress[] sw = InetAddress.getAllByName("www.pornhub.com");
+        for (int i = 0; i < sw.length; i++) {
+            System.out.println(sw[i]);
         }
 
     }

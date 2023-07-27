@@ -5,7 +5,7 @@ import java.io.ByteArrayInputStream;
 public class ByteArrayStream {
     public static void main(String[] args) {
         String str = "abc";
-        byte bytes1[] = str.getBytes();
+        byte[] bytes1 = str.getBytes();
         ByteArrayInputStream in = new ByteArrayInputStream(bytes1);
         for (int i = 0; i < 2; i++) {
             int c;
