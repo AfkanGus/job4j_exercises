@@ -15,6 +15,16 @@ package ru.job4j.condition;
 public class Task41 {
     public static void evenDigitsAmount(int number) {
         int count = 0;
+        while (number > 0) {
+            int digit = number % 10;
+            if (digit % 2 == 0) {
+                count++;
+            }
+            number /= 10;
+        }
+        System.out.println(count);
+
+       /* int count = 0;
         int f = number / 100;
         int s = (number % 100) / 10;
         int t = number % 10;
@@ -28,6 +38,6 @@ public class Task41 {
         if (t % 2 == 0) {
             count++;
         }
-        System.out.println(count);
+        System.out.println(count);*/
     }
 }
