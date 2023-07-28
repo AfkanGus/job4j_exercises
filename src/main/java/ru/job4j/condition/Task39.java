@@ -29,7 +29,6 @@ public class Task39 {
                 System.out.println("Нет");
                 break;
             }
-
         }
     }
 }
