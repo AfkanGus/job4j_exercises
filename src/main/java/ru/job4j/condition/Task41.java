@@ -10,7 +10,7 @@ package ru.job4j.condition;
  * <p>
  * Например, вывод для числа 320 будет:
  * <p>
- * 2
+ *
  */
 public class Task41 {
     public static void evenDigitsAmount(int number) {
