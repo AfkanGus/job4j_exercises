@@ -21,9 +21,8 @@ public class Task45 {
          * (number2 / 100) * 100 - это восстановление числа, состоящего из первых двух цифр числа number2, путем умножения целой части числа number2 на 100.
          * объединяет первые две цифры числа number2 с двумя последними цифрами числа number1.*/
         int num1 = (number2 / 100) * 100 + (number1 % 100);
-        /**/
-        int num2 = (number1 / 100) * 100 + (number2 % 100);
+       // int num2 = (number1 / 100) * 100 + (number2 % 100);
         System.out.println(num1);
-        System.out.println(num2);
+      //  System.out.println(num2);
     }
 }
