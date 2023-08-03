@@ -13,6 +13,37 @@ package ru.job4j.array;
  */
 public class Task79 {
     public static void array(int[] nums) {
+        int[] counts = new int[nums.length];
+        int uniqueCount = 0;
 
+        // Подсчет количества повторений каждого значения
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = 0; j < nums.length; j++) {
+                if (nums[i] == nums[j]) {
+                    counts[i]++;
+                }
+            }
+            if (counts[i] > 1) {
+                uniqueCount++;
+            }
+        }
+
+        int[] uniqueIndices = new int[uniqueCount];
+        int index = 0;
+
+        // Заполняем массив уникальными индексами
+        for (int i = 0; i < nums.length; i++) {
+            if (counts[i] > 1) {
+                uniqueIndices[index++] = i;
+            }
+        }
+
+        // Выводим значения, которые встречаются более одного раза
+        for (int i = 0; i < uniqueIndices.length; i++) {
+            System.out.print(nums[uniqueIndices[i]] + " ");
+        }
     }
 }
+
+
+
