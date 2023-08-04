@@ -13,37 +13,31 @@ package ru.job4j.array;
  */
 public class Task79 {
     public static void array(int[] nums) {
-        int[] counts = new int[nums.length];
-        int uniqueCount = 0;
-
-        // Подсчет количества повторений каждого значения
+        StringBuilder result = new StringBuilder();
         for (int i = 0; i < nums.length; i++) {
-            for (int j = 0; j < nums.length; j++) {
-                if (nums[i] == nums[j]) {
-                    counts[i]++;
+            int count = 1; // Initialize count for the current number
+            if (nums[i] != Integer.MIN_VALUE) {
+                // Count occurrences of nums[i]
+                for (int j = i + 1; j < nums.length; j++) {
+                    if (nums[j] == nums[i]) {
+                        count++;
+                        nums[j] = Integer.MIN_VALUE; // Mark the number as visited
+                    }
+                }
+
+                // If count is greater than 1, it means the number occurs more than once
+                if (count > 1) {
+                    result.append(nums[i]);
+                    if (i < nums.length - 1) {
+                        result.append(" ");
+                    }
                 }
             }
-            if (counts[i] > 1) {
-                uniqueCount++;
-            }
         }
-
-        int[] uniqueIndices = new int[uniqueCount];
-        int index = 0;
-
-        // Заполняем массив уникальными индексами
-        for (int i = 0; i < nums.length; i++) {
-            if (counts[i] > 1) {
-                uniqueIndices[index++] = i;
-            }
-        }
-
-        // Выводим значения, которые встречаются более одного раза
-        for (int i = 0; i < uniqueIndices.length; i++) {
-            System.out.print(nums[uniqueIndices[i]] + " ");
-        }
+        System.out.println(result); // Print the result using StringBuilder
     }
 }
+
 
 
 
