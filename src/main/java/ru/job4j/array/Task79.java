@@ -15,8 +15,8 @@ public class Task79 {
     public static void array(int[] nums) {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < nums.length; i++) {
-            int count = 1; // Initialize count for the current number
             if (nums[i] != Integer.MIN_VALUE) {
+                int count = 1; // Initialize count for the current number
                 // Count occurrences of nums[i]
                 for (int j = i + 1; j < nums.length; j++) {
                     if (nums[j] == nums[i]) {
@@ -27,16 +27,19 @@ public class Task79 {
 
                 // If count is greater than 1, it means the number occurs more than once
                 if (count > 1) {
-                    result.append(nums[i]);
-                    if (i < nums.length - 1) {
-                        result.append(" ");
-                    }
+                    result.append(nums[i]).append(" ");
                 }
             }
         }
-        System.out.println(result); // Print the result using StringBuilder
+
+        // Check if there are any values that appear more than once
+        if (result.length() > 0) {
+            // Print the result without the trailing spaces
+            System.out.println(result.toString().trim());
+        }
     }
 }
+
 
 
 
