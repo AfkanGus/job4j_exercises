@@ -1,5 +1,7 @@
 package ru.job4j.array;
 
+import java.util.Arrays;
+
 /**
  * 5. Вывести значения, которые встречаются больше одного раза
  * Ниже представлен метод array(int[] arr), который принимает массив целых чисел.
@@ -13,32 +15,80 @@ package ru.job4j.array;
  */
 public class Task79 {
     public static void array(int[] nums) {
-        StringBuilder result = new StringBuilder();
+        /*
+              StringBuilder result = new StringBuilder();
         for (int i = 0; i < nums.length; i++) {
             if (nums[i] != Integer.MIN_VALUE) {
-                int count = 1; // Initialize count for the current number
-                // Count occurrences of nums[i]
+                int count = 1; // Инициализируем счетчик для текущего числа
+                // Подсчет количества повторений числа nums[i]
                 for (int j = i + 1; j < nums.length; j++) {
                     if (nums[j] == nums[i]) {
                         count++;
-                        nums[j] = Integer.MIN_VALUE; // Mark the number as visited
+                        nums[j] = Integer.MIN_VALUE; // Помечаем число как посещенное
                     }
                 }
 
-                // If count is greater than 1, it means the number occurs more than once
+                // Если счетчик больше 1, значит число встречается больше одного раза
                 if (count > 1) {
                     result.append(nums[i]).append(" ");
                 }
             }
         }
 
-        // Check if there are any values that appear more than once
+        // Проверяем, есть ли значения, которые встречаются больше одного раза
         if (result.length() > 0) {
-            // Print the result without the trailing spaces
+            // Выводим результат без конечных пробелов
+            System.out.println(result.toString().trim());
+        }
+    }*/
+
+        /*
+        // Создаем HashMap для подсчета повторений элементов
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        // Проходим по массиву и добавляем каждый элемент в HashMap
+        for (int num : nums) {
+            map.put(num, map.getOrDefault(num, 0) + 1);
+        }
+
+        // Создаем StringBuilder для хранения результата
+        StringBuilder result = new StringBuilder();
+
+        // Проходим по массиву и добавляем в StringBuilder только повторяющиеся элементы
+        for (int num : nums) {
+            if (map.get(num) > 1 && result.indexOf(num + " ") == -1) {
+                result.append(num).append(" ");
+            }
+        }
+
+        // Проверяем, есть ли значения, которые встречаются больше одного раза
+        if (result.length() > 0) {
+            // Выводим результат без конечных пробелов
+            System.out.println(result.toString().trim());
+        }
+    }
+         */
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < nums.length; i++) {
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                continue; // Пропускаем элемент, если он уже был добавлен в результат
+            }
+            for (int j = i + 1; j < nums.length; j++) {
+                if (nums[i] == nums[j]) {
+                    result.append(nums[i]).append(" ");
+                    break;
+                }
+            }
+        }
+        // Проверяем, есть ли значения, которые встречаются больше одного раза
+        if (result.length() > 0) {
+            // Выводим результат без конечных пробелов
             System.out.println(result.toString().trim());
         }
     }
 }
+
+
 
 
 
