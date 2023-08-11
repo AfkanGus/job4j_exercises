@@ -10,7 +10,10 @@ public class ReadFile {
             while ((read = in.read()) != -1) {
                 txt.append((char) read);
             }
-            System.out.println(txt);
+            String[] lines = txt.toString().split(System.lineSeparator());
+            for (String line : lines) {
+                System.out.println(line);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
