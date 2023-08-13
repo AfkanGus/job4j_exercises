@@ -16,7 +16,19 @@ package ru.job4j.condition;
  */
 public class Task42 {
     public static void isPairSymmetric(int number) {
-        if (number < 1000 || number > 9999) {
+        String numStr = Integer.toString(number);
+
+        if (numStr.length() != 4) {
+            System.out.println("Нет");
+            return;
+        }
+
+        if (numStr.charAt(0) == numStr.charAt(2) && numStr.charAt(1) == numStr.charAt(3)) {
+            System.out.println("Да");
+        } else {
+            System.out.println("Нет");
+        }
+        /*if (number < 1000 || number > 6400) {
             System.out.println("Нет");
             return;
         }
@@ -30,7 +42,7 @@ public class Task42 {
             System.out.println("Да");
         } else {
             System.out.println("Нет");
-        }
+        }*/
 
       /*  String numStr = Integer.toString(number);
 
