@@ -16,9 +16,16 @@ public class Task50 {
         int lastDigit1 = num1 % 10;  /*Получение последней цифры числа num1*/
         int lastDigit2 = num2 % 10; /*Получение последней цифры числа num2*/
 
-        String rsl = (lastDigit1 > lastDigit2) ? String.valueOf(lastDigit1) : (lastDigit1 < lastDigit2)
+        int maxLastDigit = Math.max(lastDigit1, lastDigit2);
+        if (lastDigit1 == lastDigit2) {
+            System.out.println("Одинаковые");
+        } else {
+            System.out.println(maxLastDigit);
+        }
+       /* String rsl = (lastDigit1 > lastDigit2) ? String.valueOf(lastDigit1) : (lastDigit1 < lastDigit2)
                 ? String.valueOf(lastDigit2) : "Одинаковые";
-        System.out.println(rsl);
+        System.out.println(rsl);*/
+
        /* if (lastDigit1 > lastDigit2) {
             System.out.println(lastDigit1);
         } else if (lastDigit1 < lastDigit2) {
