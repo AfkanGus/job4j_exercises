@@ -19,6 +19,34 @@ package ru.job4j.condition;
  */
 public class Task54 {
     public static void transform(int number) {
+        // Преобразование числа в строку для удобства обработки цифр
+        String numStr = Integer.toString(number);
+        StringBuilder result = new StringBuilder();
 
+        // Проходимся по каждой цифре числа
+        for (int i = 0; i < numStr.length(); i++) {
+            char digit = numStr.charAt(i);
+
+            // Проверяем, четная ли цифра
+            boolean isEven = (digit - '0') % 2 == 0;
+
+            // Выполняем соответствующее преобразование
+            if (isEven) {
+                if (digit == '9') {
+                    result.append(digit); // Нельзя увеличить 9
+                } else {
+                    result.append((char) (digit + 1));
+                }
+            } else {
+                if (digit == '0') {
+                    result.append(digit); // Нельзя уменьшить 0
+                } else {
+                    result.append((char) (digit - 1));
+                }
+            }
+        }
+
+        // Выводим результат
+        System.out.println(result.toString());
     }
 }
