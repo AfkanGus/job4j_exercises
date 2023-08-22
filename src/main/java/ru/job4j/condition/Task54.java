@@ -19,34 +19,42 @@ package ru.job4j.condition;
  */
 public class Task54 {
     public static void transform(int number) {
-        // Преобразование числа в строку для удобства обработки цифр
-        String numStr = Integer.toString(number);
-        StringBuilder result = new StringBuilder();
+        int sign = number < 0 ? -1 : 1; // Запоминаем знак числа
 
-        // Проходимся по каждой цифре числа
-        for (int i = 0; i < numStr.length(); i++) {
-            char digit = numStr.charAt(i);
+        number = Math.abs(number); // Работаем с положительным числом
 
-            // Проверяем, четная ли цифра
-            boolean isEven = (digit - '0') % 2 == 0;
+        int multiplier = 1; // Множитель для позиции цифры (единицы, десятки, сотни)
 
-            // Выполняем соответствующее преобразование
-            if (isEven) {
-                if (digit == '9') {
-                    result.append(digit); // Нельзя увеличить 9
+        int result = 0;
+
+        while (number > 0) {
+            int digit = number % 10; // Получаем последнюю цифру числа
+            int modifiedDigit;
+
+            if (number % 2 == 0) {
+                // Если число четное, увеличиваем четные цифры, уменьшаем нечетные
+                if (digit % 2 == 0) {
+                    modifiedDigit = (digit + 1) % 10;
                 } else {
-                    result.append((char) (digit + 1));
+                    modifiedDigit = (digit - 1 + 10) % 10;
                 }
             } else {
-                if (digit == '0') {
-                    result.append(digit); // Нельзя уменьшить 0
+                // Если число нечетное, уменьшаем четные цифры, увеличиваем нечетные
+                if (digit % 2 == 0) {
+                    modifiedDigit = (digit - 1 + 10) % 10;
                 } else {
-                    result.append((char) (digit - 1));
+                    modifiedDigit = (digit + 1) % 10;
                 }
             }
+
+            result += modifiedDigit * multiplier; // Обновляем результат
+            multiplier *= 10; // Увеличиваем множитель
+            number /= 10; // Убираем последнюю цифру
         }
 
-        // Выводим результат
-        System.out.println(result.toString());
+        number = result * sign; // Учитываем знак и обновляем переданное число
+        System.out.println(number);
     }
+
 }
+
