@@ -18,6 +18,14 @@ package ru.job4j.condition;
  */
 public class Task55 {
     public static void apartmentPlace(int number) {
-        //...Ваш код...;
+        // Рассчитываем этаж
+        int floor = (number - 1) / 3 + 1;
+
+        // Определяем место на этом этаже
+        int place = (number - 1) % 3 + 1;
+
+        // Выводим результат в консоль
+        System.out.println(floor);
+        System.out.println(place);
     }
 }
