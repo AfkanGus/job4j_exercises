@@ -28,14 +28,16 @@ package ru.job4j.condition;
  */
 public class Task59 {
     public static void getLinearEquation(int a, int b) {
-        double x;
-        if (a == 0 && b == 0) {
+        //  double x;
+        String result = (a == 0 && b == 0) ? "Бесконечное множество" : (a == 0 || b == 0) ? "Нет решения" : String.valueOf((double) -b / a);
+        System.out.println(result);
+      /*  if (a == 0 && b == 0) {
             System.out.println("Бесконечное множество");
         } else if (a == 0 || b == 0) {
             System.out.println("Нет решения");
         } else {
             x = (double) -b / a;
             System.out.println(x);
-        }
+        }*/
     }
 }
