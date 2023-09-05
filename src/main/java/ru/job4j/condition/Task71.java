@@ -15,6 +15,29 @@ package ru.job4j.condition;
  */
 public class Task71 {
     public static void change(int money) {
+        int hundredBills = 0;
+        int fiftyBills = 0;
+        int tenBills = 0;
 
+        while (money >= 100) {
+            hundredBills++;
+            money -= 100;
+        }
+
+        while (money >= 50) {
+            fiftyBills++;
+            money -= 50;
+        }
+
+        while (money >= 10) {
+            tenBills++;
+            money -= 10;
+        }
+
+        if (money == 0) {
+            System.out.println("100: " + hundredBills + ", 50: " + fiftyBills + ", 10: " + tenBills);
+        } else {
+            System.out.println("Нельзя");
+        }
     }
 }
