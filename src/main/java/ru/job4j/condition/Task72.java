@@ -8,8 +8,7 @@ package ru.job4j.condition;
  * "Нет", если не является.
  * <p>
  * Например, для числа 132 вывод будет:
- * <p>
- * Да
+ * <p> Да
  */
 public class Task72 {
     public static void midDigitMore(int num) {
