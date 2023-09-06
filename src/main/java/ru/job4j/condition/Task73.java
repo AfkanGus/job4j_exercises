@@ -14,19 +14,14 @@ package ru.job4j.condition;
  */
 public class Task73 {
     public static void midDigitLess(int num) {
-        if (!(100 <= num && num <= 999)) {
-            System.out.println("Введите трехзначное число");
-            return;
-        }
-
-        int firstDigit = num / 100;
-        int lastDigit = num % 10;
-        int middleDigit = (num / 10) % 10;
-
-        if (middleDigit < firstDigit && middleDigit < lastDigit) {
+        int firstNumber = (num / 100);
+        int lastNumber = num % 10;
+        int middleNumber = (num / 10) % 10;
+        System.out.println((middleNumber < lastNumber && middleNumber < firstNumber) ? "Да" : "Нет");
+      /*  if (middleNumber < lastNumber && middleNumber < firstNumber) {
             System.out.println("Да");
         } else {
             System.out.println("Нет");
-        }
+        }*/
     }
 }
