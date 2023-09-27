@@ -11,6 +11,26 @@ package ru.job4j.condition;
  * <p>
  * 1 5/7
  * <p>
+ * * Например  для чисел 3 и 3 будет:
+ * * <p>
+ * * 1
+ * <p>
+ * <p>
+ * * * Например  для чисел 1 и 3 будет:
+ * * * <p>
+ * Подсчет не производится
+ * <p>
+ * * Например  для чисел 2 и 7 будет:
+ * * <p>
+ * Подсчет не производится
+ * <p>
+ * * Например  для чисел 5 и 3 будет:
+ * * <p>
+ * 1 2/3
+ * <p>
+ * * Например  для чисел 9 и 3 будет:
+ * * * <p>
+ * 3
  * Во всех остальных случаях вывести "Подсчет не производится".
  * Примечания:
  * <p>
@@ -20,12 +40,21 @@ package ru.job4j.condition;
  */
 public class Task53 {
     public static void transformFraction(int num1, int num2) {
-        if (num1 >= num2 && num2 != 0) {
-            int wholePart = num1 / num2;
-            int remainder = num1 % num2;
-            System.out.println(wholePart + " " + remainder + "/" + num2);
-        } else {
-            System.out.println("Подсчет не производится");
+            if (num2 == 0) {
+                System.out.println("Подсчет не производится");
+            } else if (num1 == 0) {
+                System.out.println("0");
+            } else if (num1 >= num2) {
+                int wholePart = num1 / num2;
+                int remainder = num1 % num2;
+                if (remainder == 0) {
+                    System.out.println(wholePart);
+                } else {
+                    System.out.println(wholePart + " " + remainder + "/" + num2);
+                }
+            } else {
+                System.out.println("Подсчет не производится");
+            }
         }
     }
-}
+
