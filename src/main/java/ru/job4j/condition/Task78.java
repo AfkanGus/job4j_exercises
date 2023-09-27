@@ -11,20 +11,41 @@ package ru.job4j.condition;
  * <p>
  * Например, для числа 456 вывод будет:
  * <p>
- * 4 6\r\n
+ * 4 6
  * Например, для числа 222 вывод будет:
  * <p>
- * 2 2 2\r\n
+ * 2 2 2
  * Например, для числа 100 вывод будет:
  * * <p>
- * 1\r\n
+ * 1
  * Например, для числа 223 вывод будет:
  * <p>
  * "Таких чисел нет"
  */
 public class Task78 {
     public static void divWithoutRemainder(int num) {
-        boolean found = false; // Флаг для определения, были ли найдены делители
+        int digit1 = num / 100; // Получаем первую цифру
+        int digit2 = (num / 10) % 10; // Получаем вторую цифру
+        int digit3 = num % 10; // Получаем третью цифру
+
+        StringBuilder result = new StringBuilder();
+
+        if (digit1 != 0 && num % digit1 == 0) {
+            result.append(digit1).append(" ");
+        }
+        if (digit2 != 0 && num % digit2 == 0) {
+            result.append(digit2).append(" ");
+        }
+        if (digit3 != 0 && num % digit3 == 0) {
+            result.append(digit3).append(" ");
+        }
+
+        if (result.length() > 0) {
+            System.out.println(result.toString().trim());
+        } else {
+            System.out.println("Таких чисел нет");
+        }
+    /*    boolean found = false; // Флаг для определения, были ли найдены делители
 
         // Разбиваем число на цифры
         int hundreds = num / 100;
@@ -52,6 +73,6 @@ public class Task78 {
             System.out.print("Таких чисел нет");
         }
 
-        System.out.println();
+        System.out.println();*/
     }
 }
