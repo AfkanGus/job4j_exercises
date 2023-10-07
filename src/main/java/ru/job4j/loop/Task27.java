@@ -12,12 +12,22 @@ package ru.job4j.loop;
  * Например, для числа 2 вывод будет:
  * <p>
  * -1 0 1
+ * <p>
+ * Например, для числа 1 вывод будет:
+ * <p>
+ * 0 8
+ * <p>
+ * Например, для числа 3 вывод будет:
+ * <p>
+ * 0 -8 -16 -24 -32 -40
  */
 public class Task27 {
     public static void loop(int num) {
-        for (int i = -num + 1; i < num; i++) {
-            System.out.print(i + " ");
+        StringBuilder result = new StringBuilder();
+        for (int i = -num + 1; i <= num; i++) {
+            result.append(i).append(" ");
         }
-        System.out.println();
+        System.out.println(result.toString().trim());
     }
 }
+
