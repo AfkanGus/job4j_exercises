@@ -24,10 +24,11 @@ package ru.job4j.loop;
 public class Task27 {
     public static void loop(int num) {
         StringBuilder result = new StringBuilder();
-        for (int i = -num + 1; i <= num; i++) {
+        for (int i = -num + 1; i < num - 1; i++) {
             result.append(i).append(" ");
         }
-        System.out.println(result.toString().trim());
+        result.append(num - 1);
+        System.out.println(result.toString());
     }
 }
 
