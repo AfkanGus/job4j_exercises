@@ -23,7 +23,6 @@ public class Task31 {
             if ((firstDigit * lastDigit) < num) {
                 str.append(i).append(" ");
             }
-
         }
         System.out.println(str.toString().trim());
     }
