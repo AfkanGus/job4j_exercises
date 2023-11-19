@@ -12,18 +12,17 @@ package ru.job4j.loop;
 public class Task39 {
     public static void loop() {
         StringBuilder str = new StringBuilder();
-
         for (int i = 200; i <= 210; i++) {
             int number = i;
             int sumOfDigits = 0;
 
-            // Вычисляем сумму цифр числа
+            /*Вычисляем сумму цифр числа*/
             while (number != 0) {
                 sumOfDigits += number % 10;
                 number /= 10;
             }
 
-            // Проверяем условие и добавляем число в строку, если удовлетворяет
+            /* Проверяем условие и добавляем число в строку, если удовлетворяет */
             if (i % sumOfDigits == 0) {
                 str.append(i).append(" ");
             }
