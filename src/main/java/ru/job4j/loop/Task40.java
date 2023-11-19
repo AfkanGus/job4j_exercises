@@ -13,6 +13,14 @@ package ru.job4j.loop;
  */
 public class Task40 {
     public static void loop() {
-
+        StringBuilder str = new StringBuilder();
+        for (int i = 20; i <= 40; i++) {
+            int unitsDigit = i % 10;
+            int tensDigit = (i / 10) % 10;
+            if (unitsDigit % 3 == 0 && tensDigit % 3 == 0) {
+                str.append(i).append(" ");
+            }
+        }
+        System.out.println(str.toString().trim());
     }
 }
