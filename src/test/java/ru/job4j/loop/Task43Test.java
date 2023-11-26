@@ -8,10 +8,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
 
 public class Task43Test {
-
     public String ln = System.lineSeparator();
 
     @Test

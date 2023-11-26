@@ -13,13 +13,16 @@ package ru.job4j.loop;
  */
 public class Task43 {
     public static void loop() {
+        /*
+        % - деление без остатка
+        / - деление с остатком
+         */
         StringBuilder str = new StringBuilder();
-        for (int i = 300; i < 325; i++) {
+        for (int i = 312; i <= 325; i++) {
+            int tens = (i % 100) / 10;
+            int units = (i % 100) % 10;
             int hundreds = i / 100;
-            int lastTwoDigits = i % 100;
-            int tens = lastTwoDigits / 10;
-            int units = lastTwoDigits % 10;
-            if () {
+            if ((tens * 10 + units) % hundreds == 0) {
                 str.append(i).append(" ");
             }
         }
