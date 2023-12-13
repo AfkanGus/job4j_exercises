@@ -34,6 +34,6 @@ public class Task49 {
             }
         }
 
-        System.out.println(result.toString());
+        System.out.println(result.toString().trim());
     }
 }
