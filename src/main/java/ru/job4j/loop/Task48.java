@@ -23,7 +23,6 @@ public class Task48 {
             }
         }
         System.out.println(str.toString().trim());
-
     }
 }
 
