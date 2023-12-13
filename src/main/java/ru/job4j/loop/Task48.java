@@ -15,16 +15,15 @@ package ru.job4j.loop;
  */
 public class Task48 {
     public static void loop(int num) {
-        StringBuilder result = new StringBuilder();
+        StringBuilder str = new StringBuilder();
         for (int i = 1; i <= num; i++) {
-            result.append(i);
-
+            str.append(i);
             if (i < num) {
-                result.append("+");
+                str.append("+");
             }
         }
+        System.out.println(str.toString().trim());
 
-        System.out.println(result.toString().trim());
     }
 }
 
