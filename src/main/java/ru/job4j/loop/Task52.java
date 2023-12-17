@@ -19,7 +19,7 @@ public class Task52 {
         StringBuilder str = new StringBuilder();
         if (n < m) {
             // Если n меньше m, вывести n последовательных чисел, начиная с m
-            for (int i = m; i < m + n; i++) {
+            for (int i = m; i < n + m; i++) {
                 str.append(i).append(" ");
             }
         } else {
