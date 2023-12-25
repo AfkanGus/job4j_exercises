@@ -1,0 +1,22 @@
+как записать в файл
+В Java источник  описаны через абстрактные классы.
+java.io.InputStream
+
+приемник данных java.io.OutputStream
+public class ResultFile {
+    public static void main(String[] args) {
+        try (FileOutputStream output = new FileOutputStream("data/dataresult.txt")) {
+            output.write("Hello, world!".getBytes());
+            output.write(System.lineSeparator().getBytes());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+1. Конструктор класса FileOutputStream принимает имя файла. Файл dataresult.txt будет
+ создан в каталоге "data" в корне проекта.
+
+2. Для записи используется метод out.write. Этот метод принимает массив байт, поэтому
+строку преобразовали в массив байтов.
+
+3. Любой ресурс должен быть закрыт для это используется конструкция try-with-resources.

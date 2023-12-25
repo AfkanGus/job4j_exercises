@@ -1,0 +1,59 @@
+в Java прочитать файл. java.io.FileInputStream
+Данные считываются по байтам.
+try (FileInputStream input = new FileInputStream("data/input.txt")) {
+            StringBuilder text = new StringBuilder();
+            int read;
+            while ((read = input.read()) != -1) {
+                text.append((char) read);
+            }
+
+       Чтение построчно с использованием BufferedReader:
+        String filePath = "path/to/your/file.txt";
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+       FileReader открывает поток для чтения символов из файла, используя кодировку по
+       умолчанию для вашей системы. Он удобен для чтения текстовых файлов, но не
+        самый эффективный для чтения больших объемов данных, поскольку он читает данные по
+         одному символу за раз.
+         BufferedReader оборачивает другие Reader, предоставляя буферизацию. Буферизация
+         улучшает производительность, так как при каждом чтении не происходит непосредственного
+          обращения к файлу, а данные сначала считываются в буфер, а затем по мере необходимости
+           передаются клиентскому коду.
+           Пример использования FileReader и BufferedReader объединяет преимущества обоих классов.
+           FileReader открывает поток для чтения символов из файла, а BufferedReader обеспечивает
+            буферизацию, что может сделать операции ввода/вывода более эффективными.
+
+    }
+}
+
+Чтение файлов целиком с использованием Files (NIO):
+ try {
+            byte[] fileBytes = Files.readAllBytes(Paths.get(filePath));
+
+В данной строке кода:
+
+java
+Copy code
+byte[] fileBytes = Files.readAllBytes(Paths.get(filePath));
+используется метод Files.readAllBytes(), предоставляемый в пакете java.nio.file.
+ Давайте разберем, что происходит:
+
+Paths.get(filePath):
+
+Paths.get(filePath) создает объект типа Path, представляющий путь к файлу на
+файловой системе. Этот путь используется для указания расположения файла, который вы хотите прочитать.
+Files.readAllBytes():
+
+Files.readAllBytes(Path path) - это метод, который читает все байты из файла,
+ представленного объектом Path.
+Этот метод читает все содержимое файла и возвращает массив байтов (byte[]),
+представляющий все данные из файла.
+
+Чтение с использованием Scanner:
+ try (Scanner scanner = new Scanner(new File(filePath))) {
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+
+Чтение с использованием Files.newBufferedReader (NIO):
+try (BufferedReader reader = Files.newBufferedReader(Paths.get(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
