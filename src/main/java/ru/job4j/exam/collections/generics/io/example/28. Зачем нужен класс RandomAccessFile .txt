@@ -1,0 +1,62 @@
+28. Зачем нужен класс RandomAccessFile?
+FileInputStream и FileOutputStream. С помощью этих классов мы можем либо только читать из файла, либо только записывать в файл, так как эти потоки являются последовательными, то есть в этих потоках доступ к данным происходит последовательно от байта к байту (либо от символа к символу в случае FileReader / FileWriter)
+и пока идет чтение или запись данные файла нельзя обновлять.
+но есть
+класс RandomAccessFile  который позволяет читать и записывать в файл одновременно в любом месте файла. такие файлы называюсятся файлы с произвольным доступом.
+RandomAccesFile не насдедуется от InputStream и outputStream, он реализует интерфейсы DataInput DataOutput.
+Файл произвольного доступа - последоватьльнеость байтов, он поддреживает фалйовый указатель.-это позиция местоположения курсора в файле. При создании файла, казатель находится на нулевой позиции.
+При чтении или записи одного байта указатель двигается вперед к следующему байту данных.
+RandomAccsessFile - особенность- возможность перемещаться по данным и читать необходимые данные и заисывать даные в указанное место.
+seek() - номер позиции= перемещает указатель перед указзаной позицией.
+getFilePointer() - возвращает позицию на которой находится указатель в данный момент.
+
+ То есть если у нас, например, в файле записано несколько значений типа int, то чтобы прочитать второе значение, нужно ставить указатель на 4 позицию, так как первые 4 байта (0-3 ячейки) будет занимать первое значение типа int.
+Непосредственное чтение / запись производятся с помощью методов типа read*Тип(), readLine(), readUTF() / write*Тип(), writeUTF() и т.д., с которыми мы знакомы из урока про потоки данных. 
+RandomAccessFile randomAccess = new RandomAccessFile("data/random.txt", "r");
+Режимы бывают трех типов: "r" - файл будет открыт только для чтения, "rw" - чтение и запись, "rws" - чтение и запись, при этом каждое изменение файла мгновенно отражается в исходном файле (то есть изменения сразу же сохраняются на носителе). Если указанного файла не существует, то в режиме "r" будет выброшено исключение FileNotFoundException, а в режиме "rw" и "rws" будет создан новый файл с указанным названием.
+
+/**
+ * 20. Файл произвольного доступа. RandomAccessFile  [#505000  [#505000]].
+ * Важно! Запись данных в произвольном месте будет затирать существующие данные,
+ * поэтому запись в произвольном месте можно использовать только для замены данных в
+ * пределах того же типа (в том же диапазоне памяти).
+ */
+public class RandomAccess {
+    public static void main(String[] args) {
+        try {
+            /* режим rw - при запуске создается файл*/
+            RandomAccessFile randomAccess = new RandomAccessFile("data/random.txt", "rw");
+            /*запишем несколько значений в байтовом формате*/
+            randomAccess.writeInt(100);
+            randomAccess.writeChar('A');
+            randomAccess.writeBoolean(true);
+            /*Указатель наход.в конце ф.,чтобы считать и вывсети напечать, переместим ук.в начало seek(0)*/
+            randomAccess.seek(0);
+            System.out.println(randomAccess.readInt());
+            System.out.println(randomAccess.readChar());
+            System.out.println(randomAccess.readBoolean());
+
+            /*Прочтем char. переместим на 4.т.к.перед char тип int хранится в первых 4 байтах (0, 1, 2, 3)
+            указатель находится на поз. 6(4байта int + 2 байта char).*/
+            randomAccess.seek(4);
+            System.out.println(randomAccess.readChar());
+            /*Проверить положение указателя можно с помощью метода getFilePointer():*/
+            System.out.println(randomAccess.getFilePointer());
+
+            /*Что бы переписать char, нужно переместить указатель перед char и записать его еще раз*/
+            randomAccess.seek(4);
+            randomAccess.writeChar('B');
+            randomAccess.seek(4);
+            System.out.println(randomAccess.readChar());
+
+            /*Можно установть указатель в конец файла методом length() и дописать новые данные*/
+            randomAccess.seek(randomAccess.length());
+            System.out.println("After Boolean : " + randomAccess.getFilePointer());
+            randomAccess.writeDouble(3.01);
+            randomAccess.seek(7);
+            System.out.println(randomAccess.readDouble());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}

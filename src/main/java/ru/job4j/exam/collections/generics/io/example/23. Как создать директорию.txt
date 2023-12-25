@@ -1,0 +1,46 @@
+Так как директории files у нас еще нет, её нужно создать с помощью метода mkdir(), после чего создать в ней наш файл:
+
+java
+package ru.job4j.io;
+
+import java.io.File;
+import java.io.IOException;
+
+public class FileExample {
+    public static void main(String[] args) throws IOException {
+        File directory = new File("src/main/java/ru/job4j/io/files");
+        directory.mkdir();
+        File file = new File("src/main/java/ru/job4j/io/files/file.txt");
+        file.createNewFile();
+    }
+}
+Метод mkdir() создает директорию только при наличии всех остальных директорий в переданном пути. Если по пути к целевой директории нужно создавать поддиректории, то нужно использовать метод mkdirs() - он создает целевую директорию и все поддиректории, если они еще не существуют.
+Директория отличается от файла тем, что директория может хранить другие файлы и директории, поэтому у нее есть некоторые методы, позволяющие получать информацию о содержащихся в директории элементах.
+public class DirectoryExample {
+    public static void main(String[] args) throws IOException {
+        File dir = new File("src/main/java/ru/job4j/io/files/directory"); 
+        dir.mkdirs(); 
+        File target = new File("src/main/java/ru/job4j/io/files"); 
+        File file1 = new File("src/main/java/ru/job4j/io/files/file1.txt"); 
+        file1.createNewFile(); 
+        File file2 = new File("src/main/java/ru/job4j/io/files/directory/file2.txt"); 
+        file2.createNewFile(); 
+        String[] list = target.list(); 
+        for (String f : list) {
+            System.out.println(f);
+        }
+        File[] listFiles = target.listFiles(); 
+        for (File f : listFiles) {
+            System.out.println(f);
+        }
+    }
+}
+Создание каталогов
+В классе File имеются еще два полезных служебных метода: mkdir () и
+mkdirs (). В частности, метод mkdir () создает каталог, возвращая логическое
+значение true при удачном исходе операции и логическое значение false при
+неудачном ее исходе. Операция создания каталога может завершиться неудачно
+по разным причинам. Например, путь, указанный в объекте типа F i l е, уже сущес­
+твует, или каталог не может быть создан, потому что полный путь к нему еще не су­
+ществует. Чтобы создать каталог, путь к которому еще не создан, следует вызвать
+метод mkdirs ().Он создаст как сам каталог, так и все его родительские каталоги.

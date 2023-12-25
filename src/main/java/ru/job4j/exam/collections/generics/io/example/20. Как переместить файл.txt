@@ -1,0 +1,75 @@
+Перемещение файла.
+
+На собеседовании могут спросить каким образом можно переместить файл. До JDK 7 не было готовой возможности переместить файл в другую директорию, но есть 2 варианта как это можно сделать вручную:
+
+- Если переместить нужно содержимое файла, то достаточно применить метод File.renameTo(), то есть просто переименовать его, тем самым достигая результата "перемещения" данных в файл с заданным именем. Имейте в виду, что этот метод работает не во всех файловых системах, как было указано ранее.
+
+- Если требуется переместить файл в другую директорию, то нужно скопировать содержимое файла в новый файл в другой директории, после чего старый файл удалить. 
+
+Способ перемещения файлов, появившийся с приходом NIO API, будет рассматриваться в следующем уроке.
+
+public class DirectoryExample {
+    public static void main(String[] args) throws IOException {
+        File dir = new File("src/main/java/ru/job4j/io/files/directory");
+        dir.mkdirs();
+        File target = new File("src/main/java/ru/job4j/io/files");
+        File file1 = new File("src/main/java/ru/job4j/io/files/file1.txt");
+        file1.createNewFile();
+        File file2 = new File("src/main/java/ru/job4j/io/files/directory/file2.txt");
+        // Переименование файла file1.txt
+        File renamedFile = new File(target, "renamed_file1.txt");
+        boolean renamed = file1.renameTo(renamedFile);
+        if (renamed) {
+            System.out.println("Файл успешно переименован.");
+        } else {
+            System.out.println("Не удалось переименовать файл.");
+        }
+        // Переименование директории directory
+        File renamedDir = new File(target, "renamed_directory");
+        boolean renamedDirResult = dir.renameTo(renamedDir);
+        if (renamedDirResult) {
+            System.out.println("Директория успешно переименована.");
+        } else {
+            System.out.println("Не удалось переименовать директорию.");
+        }
+        // Вывод содержимого директории target с использованием list()
+        String[] list = target.list();
+        for (String f : list) {
+            System.out.println(f);
+        }
+
+        // Вывод содержимого директории target с использованием listFiles()
+        File[] listFiles = target.listFiles();
+        for (File f : listFiles) {
+            System.out.println(f);
+        }
+    }
+}
+Перемещение файла.
+
+В прошлом уроке были описаны возможности переместить файл в версиях до JDK 7. Начиная с версии JDK 7 появилась возможность переместить файл с помощью метода move().
+
+java
+package ru.job4j.io;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+public class PathExample {
+    public static void main(String[] args) throws IOException {
+        Path dir = Paths.get("path/paths");
+        Files.createDirectories(dir);
+        Path path = Path.of("path/paths/path.txt");
+        Files.createFile(path);
+        Files.move(path, Path.of("path/path.txt"));
+    }
+}
+
+
+В данном примере сначала создается директория paths в директории path, далее в ней создаётся файл path.txt. В следующей строке
+
+java
+Files.move(path, Path.of("path/path.txt"));
+файл перемещается из директории paths в директорию path с помощью метода move(), в который мы передаем первым параметром файл, который хотим передать, а вторым параметром путь, по которому нужно его переместить

@@ -1,0 +1,43 @@
+11. Какие классы-обёртки позволяют ускорить чтениезапись за счет использования буфера
+
+Для ускорения операций чтения и записи данных в Java можно использовать оберточные классы для буферизации ввода и вывода. В контексте символьных данных, таких как текстовые файлы, вы можете использовать классы BufferedReader для буферизации чтения и BufferedWriter для буферизации записи. Эти классы помогут улучшить производительность операций за счет уменьшения частоты обращений к физическому устройству, такому как диск.
+
+Для байтовых данных, вы можете использовать классы BufferedInputStream для буферизации чтения и BufferedOutputStream для буферизации записи.
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class BufferedReadingExample {
+    public static void main(String[] args) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("example.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+public class BufferedWritingExample {
+    public static void main(String[] args) {
+        String data = "Hello, world!";
+        
+        try (BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream("output.txt"))) {
+            byte[] bytes = data.getBytes();
+            outputStream.write(bytes);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+В этих примерах буферизация помогает снизить нагрузку на физическое устройство и увеличить скорость операций чтения и записи благодаря обработке данных в памяти перед фактической записью на диск.
+
+
+
+
+

@@ -1,0 +1,87 @@
+21. Как управлять атрибутами файла
+управлять атрибутами файла можно  через доступные интерфейсы пакета java.nio.file.attribute
+ Атрибуты файлов в Java представлены в пакете java.nio.file.attribute в виде иерархии интерфейсов с учётом особенностей разных файловых систем.
+Во главе этой иерархии находится интерфейс BasicFileAttributeView. Данный интерфейс инкапсулирует атрибуты, применяющиеся во множестве файловых систем. 
+
+У интерфейса BasicFileAttributeView есть 2 наследника:
+
+- Интерфейс DosFileAttributeView - описывает атрибуты, связанные с файловой системой FAT.
+
+- Интерфейс PosixFileAttributeView - описывает атрибуты, определенные по стандартам POSIX (Portable Operating System Interface — переносимый интерфейс операционных систем). POSIX - это набор стандартов, описывающих интерфейсы между ОС и прикладной программой (API), библиотеку языка C и набор приложений и их интерфейсов. Стандарт создан для обеспечения совместимости UNIX-подобных ОС и переносимости прикладных программ на уровне исходного кода. Может быть использован и для других типов ОС.
+мы рассмотрим только шире применяющийся интерфейс BasicFileAttributeView (BasicFileAttribute).
+Path file = Path.of("Attributes.txt");
+Files.createFile(file);создаем файл в корне проекта
+BasicFileAttributeView attrView = Files.getFileAttributeView(file, BasicFileAttributeView.class); создаем Представление из атрибутв этого файла
+и получаем эти представения аотрибуты getFileAtributeView.
+BasicFileAttributes attributes = attrView.readAttributes();
+сами атрибуты, получаем readAttributes();
+Обратите внимание, что метод readAttributes() возвращает тип BasicFileAttributes. Реализации BasicFileAttributeView и BasicFileAttributes отличаются тем, что BasicFileAttributeView - это представление атрибутов файла, включающее и обязательные, и необязательные методы атрибутов файла, а с помощью метода readAttributes() атрибуты извлекаются из файловой системы в BasicFileAttributes, но в этом типе доступны будут только обязательные (основные) методы. Необязательные методы нужно вызывать через объект BasicFileAttributeView.
+ Path file1 = Path.of("Attributes1.txt");
+        Files.createFile(file1);
+        BasicFileAttributes attributes1 = Files.readAttributes(file1, BasicFileAttributes.class);
+        System.out.println(attributes1);
+Некоторые методы работы с атрибутами файла в целях упрощения работы с ними вынесены в класс Files и объявлены статическими. Например, чтобы получить атрибуты файла, не обязательно получать представление требуемой группы атрибутов, можно использовать более быстрый вариант с помощью вызова статического метода Files.readAttributes():
+
+ System.out.println("Это обычный файл? " + attributes.isRegularFile());
+        System.out.println("Это директория? " + attributes.isDirectory());
+        System.out.println("Это символическая ссылка? " + attributes.isSymbolicLink());
+        System.out.println("Это не файл, директория или символическая ссылка? " + attributes.isOther());
+        System.out.println("Дата создания файла: " + attributes.creationTime());
+        System.out.println("Размер файла: " + attributes.size());
+        System.out.println("Время последнего доступа: " + attributes.lastAccessTime());
+        System.out.println("Время последнего изменения: " + attributes.lastModifiedTime());
+Атрибуты файла также можно изменять:
+
+- через метод setTimes​(FileTime  lastModifiedTime, FileTime  lastAccessTime, FileTime  createTime) интерфейса BasicFileAttributeView. Через этот метод можно заменить только время изменения файла, время его последнего доступа и время создания. Если нужно установить только 1 или 2 из этих значений, в остальные параметры передаётся null.
+  Path file = Paths.get("Attributes.txt");
+        //создаем объект для нового значения создания времени
+        FileTime newLastAccessTime = FileTime.fromMillis(System.currentTimeMillis());
+        try {
+            BasicFileAttributeView attributeView = Files.getFileAttributeView(file, BasicFileAttributeView.class);
+            attributeView.setTimes(newLastAccessTime, null, null);
+Path для указанного файла и создаем объект FileTime для нового значения времени последнего доступа. Затем мы получаем объект BasicFileAttributeView для указанного пути файла и вызываем метод setTimes() с передачей null для времени последнего изменения и времени создания, а новое значение времени последнего доступа передаем в качестве аргумента.
+
+
+- через метод Files.setAttribute(). С помощью данного метода можно установить новое значение какого-либо атрибута, передав в метод файл, группу и имя нужного атрибута, и новое значение.
+
+ Path filePath = Paths.get("Attributes.txt");
+        try {
+            FileTime newLastNodifiedTIme = FileTime.fromMillis(System.currentTimeMillis());
+            Files.setAttribute(filePath, "lastModifiedTime", newLastNodifiedTIme);
+            Files.setAttribute(filePath, "dos:hidden", true);
+
+            BasicFileAttributes attributes = Files.readAttributes(filePath, BasicFileAttributes.class);
+            FileTime lastModifiedTime = attributes.lastModifiedTime();
+            boolean isHidden = (boolean) Files.getAttribute(filePath, "dos:hidden");
+            System.out.println("Last Modified Time: " + lastModifiedTime);
+            System.out.println("Is Hidden: " + isHidden);
+
+
+Создается объект Path с именем файла "Attributes.txt". Данный объект представляет путь к файлу в файловой системе.
+
+Затем, используя Files.setAttribute(), устанавливаются два атрибута для указанного файла:
+
+lastModifiedTime: Устанавливается новое значение атрибута "Время последнего изменения файла" (lastModifiedTime). Время устанавливается на текущее системное время с помощью FileTime.fromMillis(System.currentTimeMillis()).
+dos:hidden: Устанавливается значение атрибута "Скрытый" (hidden). Устанавливается значение true, что означает, что файл будет скрытым в операционной системе (если файловая система и операционная система поддерживают данный атрибут).
+Затем, используя Files.readAttributes(), читаются все атрибуты файла Attributes.txt. Для этого используется BasicFileAttributes.class, чтобы получить основные атрибуты файла.
+
+Полученные атрибуты используются для получения времени последнего изменения файла (lastModifiedTime()) и значения атрибута dos:hidden.
+
+Наконец, значения времени последнего изменения и значения атрибута dos:hidden выводятся на консоль.
+
+Таким образом, данный код устанавливает и читает атрибуты файла, включая время последнего изменения и значение атрибута "скрытый".
+
+
+
+Файлы и атрибуты файлов. Управление метаданными.
+
+Определение «метаданные» можно истолковать как «данные о других данных.» В контексте работы с файловой системой, это могут быть данные, содержащиеся в файлах и каталогах, а также метаданные, представляющие информацию о каждом из этих объектов: является ли объект обычным файлом, директорией, или представляет собой ссылку? Каков его размер, дата создания, дата последнего изменения, кто владелец файла, какая группа владельца, и какие права доступа?
+Пакет java.nio.file.attribute предоставляет API для управления метаданными файловой системы, или, как это обычно называется, — атрибутов файлов. Поскольку разные файловые системы имеют разные понятия о том, какие атрибуты должны быть отслежены, наиболее общие атрибуты файла объединяются в так называемые представления. Такое представление отображается с учетом специфики конкретной реализации файловой системы, н-р, POSIX или DOS, или на основе общих функций, таких как информация о владельце файла.
+Поддерживаются следующие представления:
+BasicFileAttributeView – базовые атрибуты, поддерживаемые всеми реализациями файловых систем.
+DosFileAttributeView – расширяет базовые атрибуты, добавлением стандартных четырех бит, которые используются системами, поддерживающими атрибуты DOS.
+PosixFileAttributeView – поддержка атрибутов стандарта POSIX. Атрибуты включают в себя владельца файла( file owner), группу(group owner), и уровни прав доступа(access permissions).
+FileOwnerAttributeView – поддерживается всеми системами, реализующими концепцию владельца файла.
+AclFileAttributeView – поддерживает чтение и модификацию списков управления доступом файла( Access Control Lists (ACL)). Поддерживается модель NFSv4 ACL. Любая модель ACL, такая как Windows ACL, имеющая проработанную систему отображения к модели NFSv4, также должна поддерживаться.
+UserDefinedFileAttributeView – реализация поддержки пользовательских метаданных.
+

@@ -1,0 +1,115 @@
+Директория отличается от файла тем, что директория может хранить другие файлы и директории, поэтому у нее есть некоторые методы, позволяющие получать информацию о содержащихся в директории элементах.
+
+java
+package ru.job4j.io;
+
+import java.io.File;
+import java.io.IOException;
+
+public class DirectoryExample {
+    public static void main(String[] args) throws IOException {
+        File dir = new File("src/main/java/ru/job4j/io/files/directory"); 
+        dir.mkdirs(); 
+        File target = new File("src/main/java/ru/job4j/io/files"); 
+        File file1 = new File("src/main/java/ru/job4j/io/files/file1.txt"); 
+        file1.createNewFile(); 
+        File file2 = new File("src/main/java/ru/job4j/io/files/directory/file2.txt"); 
+        file2.createNewFile(); 
+        String[] list = target.list(); 
+        for (String f : list) {
+            System.out.println(f);
+        }
+        File[] listFiles = target.listFiles(); 
+        for (File f : listFiles) {
+            System.out.println(f);
+        }
+    }
+}
+   public static void main(String[] args) throws IOException {
+        File file = new File("c:\\projects");
+        if (!file.exists()) {
+            throw new IllegalArgumentException(String.format("No exist %s", file.getAbsoluteFile()));
+        }
+        if (!file.isDirectory()) {
+            throw new IllegalArgumentException(String.format("No directory %s", file.getAbsoluteFile()));
+        }
+        System.out.println(String.format("Directory : %s", file.getAbsolutePath()));
+        File[] files = file.listFiles();
+        Arrays.stream(files)
+                .forEach(subfile -> {
+                    if (subfile.isFile()) {
+                        System.out.println(String.format("Name : %s, Size: %d bytes ", subfile.getName(), subfile.length()));
+                    } else {
+                        System.out.println(String.format("Name: %s", subfile.getName()));
+                    }
+                });
+    }
+
+
+В данном примере мы создаем директорию directory внутри директории files, а также создаем по одному файлу внутри каждой из этих директорий. В строке ниже метод list() возвращает массив строк с именами файлов и директорий, содержащихся в директории files:
+
+java
+String[] list = target.list();
+
+
+В следующей строке метод listFiles() возвращает массив объектов типа File с инкапсулированными путями расположения этих объектов в файловой системе, содержащихся в директории files
+
+java
+File[] listFiles = target.listFiles();
+
+
+Что бы получить содержимое каталога, можно исользовать newDirectoryStream() класса File передав ему объутк типа Path обозначаюший каталог.
+static DirectoryStream<Path> new DirectioryStream(Path "io/data")
+throws IOException
+
+ String dirname = "C:\\projects";
+        try (DirectoryStream<Path> dirstrim = Files.newDirectoryStream(Paths.get(dirname))) {
+            System.out.println(dirname);
+            for (Path enty : dirstrim) {
+                BasicFileAttributes attributes = Files.readAttributes(
+                        enty, BasicFileAttributes.class
+                );
+                if (attributes.isDirectory()) {
+                    System.out.println("<DIR>");
+                } else {
+                    System.out.println("   ");
+                }
+                System.out.println(enty.getName(1));
+
+
+В предыдущих примерах получалось содержимое только одного каталога. Но
+иногда требуется получить список файлов из дерева каталогов.
+ из класса Files можно вызвать метод walk
+FileTree (),способный обработать дерево каталогов.
+
+ String dirname = "C:\\projects";
+        System.out.println(dirname + ": \n");
+        try {
+            Files.walkFileTree(Paths.get(dirname), new MyFileVIsitor());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public FileVisitResult visitFile(Path paths, BasicFileAttributes attributes) throws IOException {
+        System.out.println(paths);
+        return FileVisitResult.CONTINUE;
+
+ мы используем метод Files.walkFileTree() для рекурсивного обхода всех файлов и каталогов в заданном пути. 
+FileVisitResult: Это тип возвращаемого значения метода. FileVisitResult является перечислением (enum) в Java, представляющим результаты обхода файлов. Он имеет несколько возможных значений, таких как CONTINUE, TERMINATE, SKIP_SUBTREE и SKIP_SIBLINGS.
+attributes типа BasicFileAttributes. Path представляет путь к файлу, а BasicFileAttributes содержит базовую информацию о файле, такую как размер, время создания и т.д.
+FileVisitResult.CONTINUE. В данном случае, он указывает, что после выполнения метода, обход файлов должен продолжаться.
+
+В прошлом уроке мы разбирали методы list() и listFiles() класса File. Аналог этих методов в NIO API - это метод Files.newDirectoryStream().
+ Метод newDirectoryStream() возвращает поток, содержащий файлы и директории, находящиеся в директории path (без вложенных). 
+
+Обход дерева файлов
+
+Получение информации о папках и файлах на диске, довольно типичная задача для прикладных программ. Пакет java.nio.file предлагает нам удобное решение такой задачи, предоставляя интерфейс FileVisitor.
+FileVisitor определяет требуемое поведение в ключевых точках прохождения процесса: когда файл посещен, прежде чем получить доступ к каталогу, после получения доступа к каталогу, или в случае отказа. Интерфейс состоит из пяти(! оставлю слово пять из оригинального текста, хотя как не старался нашел только 4! метода ) методов, которые соответствуют этим ситуациях:
+
+preVisitDirectory – вызывается до входа в папку
+postVisitDirectory – вызывается после «просмотра» всех объектов каталога. В случае возникновения ошибки, вызывается исключение и передается методу
+visitFile – вызывается для получения информации о файле, обрабатываемом в данный момент. В метод передаются атрибуты файла BasicFileAttributes, или мы можем передать определенный набор атрибутов, н-р можем выбрать чтение атрибутов DosFileAttributeView, чтобы определить является ли файл скрытым(«hidden»).
+visitFileFailed – вызывается при невозможности получить доступ к файлу. В этом случае вызывается исключение и передается методу. Обработка этого события может быть различной(вызов исключения, запись в лог или вывод информации на консоль и т.д.
+
