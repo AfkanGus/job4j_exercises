@@ -5,16 +5,15 @@ package ru.job4j.exam.collections.generics.string;
  */
 public class Task174 {
     public static void isPalindrome(int number) {
-        int originalNumber = number;
         int reversed = 0;
-
+        int originalNumber = number;
         while (number > 0) {
             int digit = number % 10;
             reversed = reversed * 10 + digit;
             number /= 10;
         }
 
-        if (originalNumber == reversed) {
+        if (originalNumber == reversed || originalNumber == reversed / 10) {
             System.out.println("Да");
         } else {
             System.out.println("Нет");
