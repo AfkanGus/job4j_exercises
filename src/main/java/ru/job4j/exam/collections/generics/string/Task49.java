@@ -25,6 +25,28 @@ package ru.job4j.exam.collections.generics.string;
  */
 public class Task49 {
     public static void isPalindrome(int number) {
+        // Преобразовываем число в строку
+        String numStr = Integer.toString(number);
 
+        // Получаем длину строки
+        int length = numStr.length();
+
+        // Переменная для хранения результата сравнения
+        boolean isPalindrome = true;
+
+        // Сравниваем символы справа налево и слева направо
+        for (int i = 0; i < length / 2; i++) {
+            if (numStr.charAt(i) != numStr.charAt(length - 1 - i)) {
+                isPalindrome = false;
+                break;
+            }
+        }
+
+        // Выводим результат в консоль
+        if (isPalindrome) {
+            System.out.println("Да");
+        } else {
+            System.out.println("Нет");
+        }
     }
 }
