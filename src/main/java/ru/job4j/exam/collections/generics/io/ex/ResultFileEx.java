@@ -12,13 +12,13 @@ public class ResultFileEx {
                     array[i][j] = (i + 1) * (j + 1);
                     String str = Integer.toString(array[i][j]);
                     out.write(str.getBytes());
-                    out.write(" ".getBytes());
                 }
                 out.write(System.lineSeparator().getBytes());
             }
-        } catch (Exception e) {
+        } catch (
+                Exception e) {
             e.printStackTrace();
         }
     }
-
 }
+

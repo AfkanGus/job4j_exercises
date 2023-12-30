@@ -1,3 +1,4 @@
+﻿25. Как прочитать данные из файла
 в Java прочитать файл. java.io.FileInputStream
 Данные считываются по байтам.
 try (FileInputStream input = new FileInputStream("data/input.txt")) {
