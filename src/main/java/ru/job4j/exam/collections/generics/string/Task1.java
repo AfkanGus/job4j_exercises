@@ -8,10 +8,8 @@ public class Task1 {
         if (strings == null || strings.length == 0) {
             return ""; // Возвращаем пустую строку для пустого массива или null
         }
-
         // Инициализируем переменную для хранения результата
         String result = strings[0];
-
         // Перебираем остальные строки массива
         for (int i = 1; i < strings.length; i++) {
             // Поиск текущей строки в текущей result
@@ -24,7 +22,6 @@ public class Task1 {
                 }
             }
         }
-
         return result;
     }
 }
