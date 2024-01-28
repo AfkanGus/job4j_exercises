@@ -1,8 +1,5 @@
 package ru.job4j.loop;
 
-import java.util.StringJoiner;
-
-
 /**
  * 46. Вывести четырехзначные числа в определенном виде
  * Ниже представлен метод loop(int num), который принимает целое
