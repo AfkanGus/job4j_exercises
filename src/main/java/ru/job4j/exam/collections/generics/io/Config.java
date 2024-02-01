@@ -15,8 +15,9 @@ public class Config {
         this.path = path;
     }
 
+    /* метод load() по аналогии с методом toString(). Метод load должен загружать пару ключ-значение в Map values.*/
     public void load() {
-         try (BufferedReader in = new BufferedReader(new FileReader(this.path))) {
+        try (BufferedReader in = new BufferedReader(new FileReader(this.path))) {
             String line;
             while ((line = in.readLine()) != null) {
                 if (line.length() > 0 && line.charAt(0) != '#') {
@@ -43,33 +44,34 @@ public class Config {
         }
     }
 
-  /*  public void load() {
-        try (BufferedReader in = new BufferedReader(new FileReader(this.path))) {
-            in.lines()
-                    .filter(s -> s.length() > 0 && s.charAt(0) != '#')
-                    .forEach(str -> {
-                        if (!str.contains("=")) {
-                            throw new IllegalArgumentException(
-                                    String.format("does not contain the symbol \"=\"", str));
-                        }
-                        if (str.startsWith("=")) {
-                            throw new IllegalArgumentException(
-                                    String.format("does not contain a key", str));
-                        }
-                        if (str.indexOf("=") == str.length() - 1) {
-                            throw new IllegalArgumentException(
-                                    String.format("does not contain a value", str));
-                        }
+    /*  public void load() {
+          try (BufferedReader in = new BufferedReader(new FileReader(this.path))) {
+              in.lines()
+                      .filter(s -> s.length() > 0 && s.charAt(0) != '#')
+                      .forEach(str -> {
+                          if (!str.contains("=")) {
+                              throw new IllegalArgumentException(
+                                      String.format("does not contain the symbol \"=\"", str));
+                          }
+                          if (str.startsWith("=")) {
+                              throw new IllegalArgumentException(
+                                      String.format("does not contain a key", str));
+                          }
+                          if (str.indexOf("=") == str.length() - 1) {
+                              throw new IllegalArgumentException(
+                                      String.format("does not contain a value", str));
+                          }
 
-                        String[] map = str.split("=", 2);
-                        values.put(map[0], map[1]);
-                    });
+                          String[] map = str.split("=", 2);
+                          values.put(map[0], map[1]);
+                      });
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
+          } catch (IOException e) {
+              e.printStackTrace();
+          }
+      }*/
 
+    /*метод value(String key) он должен возвращать значение ключа.*/
     public String value(String key) {
         return values.get(key);
     }
