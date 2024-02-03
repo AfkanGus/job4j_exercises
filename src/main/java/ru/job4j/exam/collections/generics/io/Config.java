@@ -70,7 +70,6 @@ public class Config {
               e.printStackTrace();
           }
       }*/
-
     /*метод value(String key) он должен возвращать значение ключа.*/
     public String value(String key) {
         return values.get(key);
