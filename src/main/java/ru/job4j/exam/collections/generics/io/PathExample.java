@@ -47,7 +47,6 @@ public class PathExample {
         System.out.println("Доступен для чтения?: " + Files.isReadable(path));
         System.out.println("Доступен для записи?: " + Files.isWritable(path));
         System.out.println("--------------------------------------------------");
-
         System.out.println("Методы получения информации о файлах внутри директории");
         Path dir1 = Paths.get("path/paths");
         /*
