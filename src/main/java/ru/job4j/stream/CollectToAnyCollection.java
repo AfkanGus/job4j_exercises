@@ -4,7 +4,6 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
 /**
  * 3.3. Сборка элементов. Сборка в произвольную реализацию Collection
  * Методы toList(), toSet() формируют нам уже заданную коллекцию. toList() создает ArrayList,
