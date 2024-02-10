@@ -3,6 +3,7 @@ import java.nio.file.Path;
 import java.util.Map;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
+
 public class Search {
     static Predicate<Path> searchCondition(Map<String, String> values) {
         Predicate<Path> result;
