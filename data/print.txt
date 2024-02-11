@@ -1,2 +1,0 @@
-From PrintStream in FileOutputStream
-New string
