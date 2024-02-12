@@ -11,12 +11,12 @@ public class ReadFile {
             int textRead;
             while ((textRead = fileInputStream.read()) != -1) {
                 stringBuilder.append((char) textRead);
-                String[] lines = stringBuilder.toString().split(System.lineSeparator());
+              /*  String[] lines = stringBuilder.toString().split(System.lineSeparator());
                 for (String line : lines) {
                     System.out.println(line);
-                }
+                }*/
             }
-            //System.out.println(stringBuilder);
+            System.out.println(stringBuilder);
         } catch (IOException e) {
             e.printStackTrace();
         }
