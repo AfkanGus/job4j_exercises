@@ -1,8 +1,10 @@
 package ru.job4j.stream;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 /**
  * 4.2. Группировка элементов и сумма. Метод summigtInt()
  * Если нам нужно подсчитать сумму элементов при группировке, то можем использовать коллектор Collectors.summingInt(), этот коллектор суммирует в
@@ -19,6 +21,14 @@ public class SummingMethod {
         public User(String name, List<Bill> bills) {
             this.name = name;
             this.bills = bills;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public List<Bill> getBills() {
+            return bills;
         }
     }
 
@@ -53,6 +63,16 @@ public class SummingMethod {
     }
 
     public static Map<String, Integer> summing(List<User> users) {
+        Map<String, Integer> result = new HashMap<>();
 
+        for (User user : users) {
+            int sumBalance = 0;
+            for (Bill bill : user.getBills()) {
+                sumBalance += bill.getBalance();
+            }
+            result.put(user.getName(), sumBalance);
+        }
+
+        return result;
     }
 }
