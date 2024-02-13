@@ -3,7 +3,6 @@ package ru.job4j.stream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 /**
  * 4.2. Группировка элементов и сумма. Метод summigtInt()
  * Если нам нужно подсчитать сумму элементов при группировке, то можем использовать коллектор Collectors.summingInt(), этот коллектор суммирует в
