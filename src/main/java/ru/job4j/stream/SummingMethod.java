@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * 4.2. Группировка элементов и сумма. Метод summigtInt()
- * Если нам нужно подсчитать сумму элементов при группировке, то можем использовать коллектор Collectors.summingInt(), этот коллектор суммирует в
+ * Если нам нужно подсчитать сумму элементов при группировке, то
+ * можем использовать коллектор Collectors.summingInt(), этот коллектор суммирует в
  * int. Он принимает функцию в которой мы должны преобразовать наш объект к int
- * Вам дан список пользователей, у каждого пользователя есть счет. Ваша задача найти сумму баланса для каждого пользователя.
+ * Вам дан список пользователей, у каждого пользователя есть счет.
+ * Ваша задача найти сумму баланса для каждого пользователя.
  * <p>
  * Подсказка: нужно использовать вспомогательный класс для группировки Pair
  */
@@ -63,8 +66,7 @@ public class SummingMethod {
     }
 
     public static Map<String, Integer> summing(List<User> users) {
-        Map<String, Integer> result = new HashMap<>();
-
+  /*      Map<String, Integer> result = new HashMap<>();
         for (User user : users) {
             int sumBalance = 0;
             for (Bill bill : user.getBills()) {
@@ -72,7 +74,11 @@ public class SummingMethod {
             }
             result.put(user.getName(), sumBalance);
         }
+        return result;*/
 
-        return result;
+        return users.stream()
+                .collect(Collectors.toMap(User::getName, u -> u.getBills()
+                        .stream()
+                        .collect(Collectors.summingInt(Bill::getBalance))));
     }
 }
