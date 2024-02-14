@@ -16,9 +16,7 @@ import java.util.stream.Collectors;
  * в список
  */
 public class CountingMethod {
-
     public static class Company {
-
         private String name;
 
         public Company(String name) {
@@ -32,9 +30,7 @@ public class CountingMethod {
     }
 
     public static class Worker {
-
         private int age;
-
         private Company company;
 
         public Worker(int age, Company company) {
