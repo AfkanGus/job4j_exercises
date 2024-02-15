@@ -24,7 +24,10 @@ import java.util.Optional;
  * Ваша задача найти первую строку, которая кончается на ".java" и вернуть Optional из длины этой строки
  */
 public class OptionalFlatMap {
-    public static Optional<Integer> flatMap(List<String> statings) {
-
+    public static Optional<Integer> flatMap(List<String> strings) {
+        return strings.stream()
+                .filter(s -> s.endsWith(".java")) // фильтруем строки, чтобы остались только те, что заканчиваются на ".java"
+                .map(String::length) // преобразуем каждую строку в ее длину
+                .findFirst(); // находим первую подходящую строку, если она есть
     }
 }
