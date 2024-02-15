@@ -63,12 +63,16 @@ public class OptionalFilter {
     }
 
     public static List<Child> defineChildren(List<Worker> workers, String passport) {
-        return findByPassport(workers, passport)
-                .map(worker -> worker.getChildren().stream()
+        Optional<Worker> optionalWorker = findByPassport(workers, passport);
+        if (optionalWorker.isPresent()) {
+            Worker worker = optionalWorker.get();
+            if (worker.getChildren().size() > 2) {
+                return worker.getChildren().stream()
                         .filter(child -> child.getAge() < 15)
-                        .collect(Collectors.toList()))
-                .orElse(new LinkedList<>());
-
+                        .toList();
+            }
+        }
+        return new LinkedList<>();
     }
 
     public static Optional<Worker> findByPassport(List<Worker> workers, String passport) {
