@@ -2,7 +2,6 @@ package ru.job4j.stream;
 
 import java.util.List;
 import java.util.Optional;
-
 /**
  * 7.1. Optional и Stream. Метод flatMap()
  * Иногда может возникнуть такая ситуация. У вас есть метод поиска пользователя, который возвращает Optional из User.
