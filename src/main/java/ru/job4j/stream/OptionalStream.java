@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
  */
 public class OptionalStream {
     public static class PhoneNumber {
-
         private String phone;
 
         public PhoneNumber(String phone) {
@@ -23,9 +22,7 @@ public class OptionalStream {
     }
 
     public static class User {
-
         private int id;
-
         private List<PhoneNumber> numbers;
 
         public User(int id, List<PhoneNumber> numbers) {
