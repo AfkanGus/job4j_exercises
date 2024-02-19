@@ -17,7 +17,16 @@ package ru.job4j.array;
  */
 public class Task77 {
     public static void array(int[] first, int[] second, int[] third) {
-
+        int[] rsl = new int[first.length];
+ /*       int i = 0;
+        for (int day : first) {
+            int sum = day + second[i] + third[i];
+            rsl[i++] = sum;
+        }*/
+        for (int i = 0; i < first.length; i++) {
+            rsl[i] = first[i] + second[i] + third[i];
+        }
+        System.out.printf("Первый: %s, второй: %s, третий: %s%n", rsl[0], rsl[1], rsl[2]);
     }
 }
 
