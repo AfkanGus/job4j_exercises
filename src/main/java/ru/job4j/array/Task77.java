@@ -28,5 +28,12 @@ public class Task77 {
         }
         System.out.printf("Первый: %s, второй: %s, третий: %s%n", rsl[0], rsl[1], rsl[2]);
     }
+
+    public static void main(String[] args) {
+        int[] first = {10, 20, 30};
+        int[] second = {10, 20, 30};
+        int[] third = {10, 20, 30};
+        array(first, second, third);
+    }
 }
 
