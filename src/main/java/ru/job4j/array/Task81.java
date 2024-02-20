@@ -11,6 +11,18 @@ package ru.job4j.array;
  */
 public class Task81 {
     public static int[] array(int[] nums) {
-
+        int countN = 0;
+        int countZ = 0;
+        int countP = 0;
+        for (int num : nums) {
+            if (num > 0) {
+                countP++;
+            } else if (num == 0) {
+                countZ++;
+            } else {
+                countN++;
+            }
+        }
+        return new int[]{countN, countZ, countP};
     }
 }
