@@ -40,41 +40,68 @@ import java.util.StringJoiner;
  */
 public class Task75 {
     public static void array(int[] arr) {
-        Map<Integer, Integer> temp = new HashMap<>();
+        /**
+         * temp - хр.ин. сколько раз каждая цифра встречается в массиве.
+         *
+         */
+        Map<Integer, Integer> temp = new HashMap<>(); // кл - цифра. знач - кольчество ее появлений - Number
         for (int number : arr) {
+            // метод получает зн связанное с цифрой, если нет, вернет default. или количество появле циф в масс
             Integer value = temp.getOrDefault(number, 0);
-            temp.put(number, value + 1);
+            temp.put(number, value + 1); // обновляем мап цифрой, если цифра встречалась ранее, увелич ее знч на 1.
         }
+        /*
+         *  вывод строки, содержащей информацию о количестве появлений каждой цифры в массиве.*/
         StringJoiner first = new StringJoiner(", ");
         for (int i = 1; i < 10; i++) {
             StringBuilder builder = new StringBuilder();
             builder
                     .append(i)
                     .append(": ")
+                    /* Если цифра i присутствует в Map temp, мы получаем количество ее появлений из Map.
+                     *  Если цифра отсутствует в Map, мы используем значение по умолчанию, которое равно 0.*/
                     .append(temp.getOrDefault(i, 0));
             first.add(builder);
         }
         System.out.println(first);
 
+        /* нахождения максимального и минимального значений в коллекции */
         int max = Collections.max(temp.values());
         int min = Collections.min(temp.values());
+        /*для формирования строк*/
         StringJoiner often = new StringJoiner(" ");
         StringJoiner notUse = new StringJoiner(" ");
         StringJoiner rare = new StringJoiner(" ");
         for (int i = 1; i < 10; i++) {
             Integer number = temp.getOrDefault(i, 0);
+            /* проверяем, сколько раз она встречается в массиве arr, используя метод temp.getOrDefault(i, 0).
+             Если цифра встречается 0 раз, мы добавляем ее в notUse.*/
             if (number == 0) {
                 notUse.add(String.valueOf(i));
             }
+            /**
+             * Проверяем, не равны ли max и min. Если да, значит, у нас
+             * есть цифры, которые встречаются разное количество раз.
+             */
             if (max != min) {
+                /**
+                 * сли количество появлений текущей цифры равно максимальному, мы добавляем ее в often.
+                 */
                 if (number == max) {
                     often.add(String.valueOf(i));
                 }
+                /**
+                 * Если количество появлений текущей цифры равно минимальному, мы добавляем ее в rare.
+                 */
                 if (number == min) {
                     rare.add(String.valueOf(i));
                 }
             }
         }
+        /**
+         *  если в often и rare не было добавлено ни одной цифры (например,
+         *  если все цифры встречаются одинаковое количество раз), мы добавляем "0".
+         */
         if (often.length() == 0) {
             often.add("0");
         }
