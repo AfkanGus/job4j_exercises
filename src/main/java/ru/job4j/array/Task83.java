@@ -75,6 +75,17 @@ import java.util.Map;
  */
 public class Task83 {
     public static int[] sumOfTwo(int[] numbers, int goal) {
+        // Самый первый вариант, который может прийти на ум, это сравнить в цикле каждое значение с каждым
+        for (int i = 0; i < numbers.length; i++) {
+            for (int j = i + 1; j < numbers.length; j++) {
+                if (numbers[i] + numbers[j] == goal) {
+                    return new int[]{i, j};
+                }
+            }
+        }
+        return null;
+
+        /* И еще один вариант - это объединенный вариант предыдущего решения.
         if (numbers == null || numbers.length == 0) {
             return null;
         }
@@ -86,6 +97,29 @@ public class Task83 {
             }
             map.put(numbers[i], i);
         }
+        return null;*/
+
+    /*
+        // Создаем карту для хранения чисел и их индексов Следующий вариант решения - это применение хэш-таблиц.
+        Map<Integer, Integer> map = new HashMap<>();
+
+        // Проходим по массиву и заполняем карту
+        for (int i = 0; i < numbers.length; i++) {
+            map.put(numbers[i], i);
+        }
+
+        // Проходим по массиву и ищем нужные числа
+        for (int i = 0; i < numbers.length; i++) {
+            int complement = goal - numbers[i];
+            // Проверяем, есть ли комплемент в карте и индекс комплемента не равен текущему индексу
+            if (map.containsKey(complement) && map.get(complement) != i) {
+                return new int[]{i, map.get(complement)};
+            }
+        }
+        // Если не нашли пару чисел, возвращаем null
         return null;
+        */
+
     }
 }
+
