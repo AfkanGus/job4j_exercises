@@ -46,4 +46,8 @@ public class OptionalStream {
                 .filter(phoneNumber -> phoneNumber.getPhone().startsWith(region))
                 .collect(Collectors.toList()); // Находим первый подходящий телефонный номер
     }
+
+    public static void main(String[] args) {
+
+    }
 }
