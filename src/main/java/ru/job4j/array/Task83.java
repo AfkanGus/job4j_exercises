@@ -47,9 +47,7 @@ public class Task83 {
         if (numbers == null || numbers.length == 0) {
             return null;
         }
-
         Map<Integer, Integer> map = new HashMap<>();
-
         for (int i = 0; i < numbers.length; i++) {
             int complement = goal - numbers[i];
             if (map.containsKey(complement)) {
