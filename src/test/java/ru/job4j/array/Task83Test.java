@@ -1,18 +1,10 @@
 package ru.job4j.array;
 
-<<<<<<< HEAD
-import org.junit.Test;
-
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
-=======
-
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
->>>>>>> a7e9974c0c5d42a9f18148651cf6e39599f9b8d4
 
 public class Task83Test {
     @Test
