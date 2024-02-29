@@ -1,5 +1,4 @@
 package ru.job4j.array;
-
 import java.util.StringJoiner;
 /**
  * 1. Вывести значения массива, начиная с первой ячейки
