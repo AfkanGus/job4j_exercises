@@ -14,6 +14,7 @@ public class Config {
     public Config(final String path) {
         this.path = path;
     }
+
     /* метод load() по аналогии с методом toString(). Метод load должен загружать пару ключ-значение в Map values.*/
     public void load() {
         try (BufferedReader in = new BufferedReader(new FileReader(this.path))) {
