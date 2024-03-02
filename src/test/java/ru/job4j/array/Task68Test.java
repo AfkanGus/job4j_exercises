@@ -9,7 +9,8 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class Task68Test {
-    public String ln = System.lineSeparator();g
+    public String ln = System.lineSeparator();
+
     @Test
     public void when5AndMinus2And6And0Then5AndMinus2And6And0() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
