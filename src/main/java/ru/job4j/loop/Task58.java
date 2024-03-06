@@ -14,5 +14,13 @@ package ru.job4j.loop;
 public class Task58 {
     public static void loop(int num) {
         int count = 0;
+        int first = 10;
+        int last = 20;
+        for (int i = first; i <= last; i++) {
+            if (num % i == 0) { /*делится ли нам без остатка*/
+                count++;
+            }
+        }
+        System.out.println(count);
     }
 }
