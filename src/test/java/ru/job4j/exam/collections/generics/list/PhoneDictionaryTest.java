@@ -7,6 +7,9 @@ import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ * 4. Телефонный справочник на базе ArrayList [#41598 #58971].
+ */
 public class PhoneDictionaryTest {
     @Test
     public void whenFindByName() {

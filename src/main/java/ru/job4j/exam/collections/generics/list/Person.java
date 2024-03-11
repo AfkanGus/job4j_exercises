@@ -1,5 +1,8 @@
 package ru.job4j.exam.collections.generics.list;
 
+/**
+ * 4. Телефонный справочник на базе ArrayList [#41598 #58971].
+ */
 public class Person {
     private String name;
     private String surname;
