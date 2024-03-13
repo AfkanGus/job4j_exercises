@@ -7,8 +7,8 @@ public class PrioritetOchered {
 
     public void put(Zadachi zadachi) {
         int index = 0;
-        for (Zadachi element : spisokZadach) {
-            if (zadachi.getPrioritet() < element.getPrioritet()) {
+        for (Zadachi currentZadacha : spisokZadach) {
+            if (zadachi.getPrioritet() < currentZadacha.getPrioritet()) {
                 break;
             }
             index++;
