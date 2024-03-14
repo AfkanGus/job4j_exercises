@@ -2,6 +2,10 @@ package ru.job4j;
 
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
+
+/**
+ * 5. Очередь с приоритетом на LinkedList [#41670 #58972]
+ */
 class ZadachaTest {
     @Test
     public void whenHigherPrioritySecond() {

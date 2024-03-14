@@ -1,22 +1,22 @@
 package ru.job4j;
 
+import java.util.Comparator;
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 
+/**
+ * 5. Очередь с приоритетом на LinkedList [#41670 #58972]
+ */
 public class PrioritetOchered {
-    private  LinkedList<Zadachi> spisokZadach = new LinkedList<>();
+    private PriorityQueue<Zadachi> spisokZadach =
+            new PriorityQueue<>(Comparator.comparingInt(Zadachi::getPrioritet));
 
     public void put(Zadachi zadachi) {
-        int index = 0;  /*куда вставить задачу, 0 -  нов задача вставл в начало если имеет наивсш приорт*/
-        for (Zadachi currentZadacha : spisokZadach) {
-            if (zadachi.getPrioritet() < currentZadacha.getPrioritet()) {
-                break;
-            }
-            index++;
-        }
-        this.spisokZadach.add(index, zadachi);
+        this.spisokZadach.add(zadachi);
     }
 
     public Zadachi poluchitZadachu() {
         return spisokZadach.poll();
     }
+
 }
