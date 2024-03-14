@@ -1,5 +1,8 @@
 package ru.job4j;
 
+/**
+ * 5. Очередь с приоритетом на LinkedList [#41670 #58972]
+ */
 public class Zadachi {
     private String opisanieZadachi;
     private int prioritetZadachi;
